@@ -36,6 +36,15 @@ public class PanelActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
 
+        // Get the roomId from the Intent
+        String roomId = getIntent().getStringExtra("ROOM_ID");
+        if (roomId != null) {
+            // Pass the roomId to the HomeFragment
+            Bundle bundle = new Bundle();
+            bundle.putString("ROOM_ID", roomId);
+            navController.navigate(R.id.navigation_home, bundle);
+        }
+
         // Aggiungi OnClickListener per l'ImageView
         ImageView imageView4 = findViewById(R.id.imageView4);
         imageView4.setOnClickListener(new View.OnClickListener() {

@@ -13,6 +13,7 @@ import com.journeyapps.barcodescanner.DecoratedBarcodeView;
 import com.journeyapps.barcodescanner.BarcodeCallback;
 import com.journeyapps.barcodescanner.BarcodeResult;
 import com.google.zxing.ResultPoint;
+import com.nvision.eyesconnect.ui.home.HomeFragment;
 
 import java.util.List;
 
@@ -42,8 +43,8 @@ public class ScanActivity extends AppCompatActivity {
             public void barcodeResult(BarcodeResult result) {
                 String scannedRoomId = result.getText(); // Ottieni il roomId dal QR code
 
-                // Reindirizza alla MainActivity con il roomId
-                Intent intent = new Intent(ScanActivity.this, MainActivity.class);
+                // Reindirizza a PanelActivity con il roomId
+                Intent intent = new Intent(ScanActivity.this, PanelActivity.class);
                 intent.putExtra("ROOM_ID", scannedRoomId);
                 startActivity(intent);
                 finish(); // Termina l'activity corrente

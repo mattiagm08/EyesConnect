@@ -16,6 +16,7 @@ public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
 
+    @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         HomeViewModel homeViewModel =
@@ -25,6 +26,15 @@ public class HomeFragment extends Fragment {
         View root = binding.getRoot();
 
         final TextView textView = binding.textHome;
+
+        // Ottieni il roomId dal Bundle
+        Bundle arguments = getArguments();
+        if (arguments != null) {
+            String roomId = arguments.getString("ROOM_ID");
+            // Usa il roomId come necessario
+            textView.setText("Room ID: " + roomId);
+        }
+
         homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
