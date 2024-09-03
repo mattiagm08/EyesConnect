@@ -43,13 +43,14 @@
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="54dp"
-        android:layout_height="85dp"
+        android:layout_width="49dp"
+        android:layout_height="84dp"
         android:layout_marginTop="-10dp"
         android:layout_marginEnd="15dp"
-        android:rotation="-200"
+        android:rotation="-188"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/freccia_bianca_sx" />
+        app:srcCompat="@drawable/freccia_bianca_sx"
+        app:tint="#80FFFFFF" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

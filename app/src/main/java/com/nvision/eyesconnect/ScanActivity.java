@@ -10,6 +10,11 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.journeyapps.barcodescanner.CaptureManager;
 import com.journeyapps.barcodescanner.DecoratedBarcodeView;
+import com.journeyapps.barcodescanner.BarcodeCallback;
+import com.journeyapps.barcodescanner.BarcodeResult;
+import com.google.zxing.ResultPoint;
+
+import java.util.List;
 
 public class ScanActivity extends AppCompatActivity {
 
@@ -31,6 +36,24 @@ public class ScanActivity extends AppCompatActivity {
         capture = new CaptureManager(this, barcodeScannerView);
         capture.initializeFromIntent(getIntent(), savedInstanceState);
         capture.decode();
+
+        barcodeScannerView.decodeSingle(new BarcodeCallback() {
+            @Override
+            public void barcodeResult(BarcodeResult result) {
+                String scannedRoomId = result.getText(); // Ottieni il roomId dal QR code
+
+                // Reindirizza alla MainActivity con il roomId
+                Intent intent = new Intent(ScanActivity.this, MainActivity.class);
+                intent.putExtra("ROOM_ID", scannedRoomId);
+                startActivity(intent);
+                finish(); // Termina l'activity corrente
+            }
+
+            @Override
+            public void possibleResultPoints(List<ResultPoint> resultPoints) {
+                // Non necessario per il tuo caso d'uso
+            }
+        });
     }
 
     @Override

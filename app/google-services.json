@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "905514589060",
+    "firebase_url": "https://eyesconnectrtc-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "eyesconnectrtc",
+    "storage_bucket": "eyesconnectrtc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:905514589060:android:5073fbb52d17842b295bd1",
+        "android_client_info": {
+          "package_name": "com.nvision.eyesconnect"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsj0970axEnIzATGW_M00mJiPA404EunQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

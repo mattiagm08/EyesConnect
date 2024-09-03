@@ -14,6 +14,9 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.firebase.Firebase;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
@@ -44,8 +47,12 @@ public class MainActivity extends AppCompatActivity {
         buttonQRCode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference roomRef = database.getReference("rooms").push();
+                String roomId = roomRef.getKey(); // Ottieni un identificatore univoco per la sessione
+
                 try {
-                    generateQRCode("https://www.example.com"); // Sostituisci con i dati che vuoi nel QR code
+                    generateQRCode(roomId); // Usa il room ID per generare il QR code
 
                     // Rende invisibile l'imageView3
                     imageView3.setVisibility(View.GONE);
@@ -71,6 +78,9 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
+        FirebaseDatabase.getInstance().getReference().child("masoud").setValue("Hello World!");
     }
 
     private void generateQRCode(String text) throws WriterException {
