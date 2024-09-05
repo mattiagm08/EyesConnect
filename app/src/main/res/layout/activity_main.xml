@@ -177,6 +177,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     // FIXED
+
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="404dp"
@@ -186,7 +187,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView10"
-        app:srcCompat="@drawable/whatsapp_image_2024_08_14_at_20_07_27_removebg_preview" />
+        app:srcCompat="@drawable/fdb4abda_b623_4802_a6bd_21d36e9540b0_removebg_preview" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
