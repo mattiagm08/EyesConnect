@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:backgroundTint="@android:color/transparent"
+    app:cardBackgroundColor="#56171616"
+    app:cardCornerRadius="12dp"
+    android:layout_marginTop="10dp"
+    app:cardElevation="6dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#B53C3C3C"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <!-- Layout verticale per il nome della telecamera e l'ID -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <!-- Campo di testo per il nome della telecamera -->
+            <EditText
+                android:id="@+id/name_camera_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:inputType="text"
+                android:minHeight="48dp"
+                android:singleLine="true"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <!-- TextView per mostrare l'ID della telecamera -->
+            <TextView
+                android:id="@+id/id_camera_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Camera ID:"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:layout_marginTop="4dp" />
+        </LinearLayout>
+
+        <!-- Icona per eliminare la telecamera -->
+        <ImageView
+            android:id="@+id/deleteImageView"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="8dp"
+            android:contentDescription="Camera Icon"
+            android:src="@android:drawable/ic_menu_delete"
+            app:tint="@color/white" />
+
+        <!-- Pulsante per salvare il nome modificato -->
+        <ImageView
+            android:id="@+id/saveImageView"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="8dp"
+            android:contentDescription="Save Icon"
+            android:src="@android:drawable/ic_menu_save"
+            app:tint="@color/white" />
+
+        <!-- Pulsante per avviare la connessione -->
+        <ImageView
+            android:id="@+id/playImageView"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="8dp"
+            android:contentDescription="Play Icon"
+            android:src="@android:drawable/ic_media_play"
+            app:tint="@android:color/white" />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
