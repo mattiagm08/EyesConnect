@@ -49,7 +49,7 @@ public class ScanActivity extends AppCompatActivity {
                 startActivity(intent);
                 finish(); // Termina l'activity corrente
             }
-
+//bho
             @Override
             public void possibleResultPoints(List<ResultPoint> resultPoints) {
                 // Non necessario per il tuo caso d'uso
