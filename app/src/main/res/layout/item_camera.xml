@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
@@ -32,7 +33,9 @@
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
                 android:inputType="text"
-                android:minHeight="48dp"
+                android:textColorHint="@color/white"
+                android:hint="Camera's Name: "
+                android:minHeight="38dp"
                 android:singleLine="true"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
@@ -44,9 +47,9 @@
                 android:id="@+id/id_camera_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Camera ID:"
+                android:text="ID: "
                 android:textColor="@color/white"
-                android:textSize="18sp"
+                android:textSize="12sp"
                 android:layout_marginTop="4dp" />
         </LinearLayout>
 

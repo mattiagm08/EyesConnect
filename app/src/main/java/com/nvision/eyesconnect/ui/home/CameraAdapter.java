@@ -1,22 +1,33 @@
 package com.nvision.eyesconnect.ui.home;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.nvision.eyesconnect.R;
+
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class CameraAdapter extends RecyclerView.Adapter<CameraAdapter.CameraViewHolder> {
 
     private List<CameraItem> cameraList;
+    private CameraItemListener itemListener;
+    private Context context;
 
-    public CameraAdapter(List<CameraItem> cameraList) {
+    public CameraAdapter(Context context, List<CameraItem> cameraList, CameraItemListener itemListener) {
+        this.context = context;
         this.cameraList = cameraList;
+        this.itemListener = itemListener;
     }
 
     @NonNull
@@ -30,25 +41,36 @@ public class CameraAdapter extends RecyclerView.Adapter<CameraAdapter.CameraView
     @Override
     public void onBindViewHolder(@NonNull CameraViewHolder holder, int position) {
         CameraItem cameraItem = cameraList.get(position);
-        holder.cameraIdTextView.setText("Camera ID: " + cameraItem.getCameraId());
+        holder.cameraIdTextView.setText("ID: " + cameraItem.getCameraId());
+
+        // Visualizza il nome con il prefisso
         holder.cameraNameEditText.setText(cameraItem.getCameraName());
 
-        // Imposta l'azione per salvare il nome modificato
         holder.saveImageView.setOnClickListener(v -> {
-            cameraItem.setCameraName(holder.cameraNameEditText.getText().toString());
-            // Qui puoi gestire il salvataggio del nome della telecamera in un database o simile
+            String updatedText = holder.cameraNameEditText.getText().toString();
+            // Rimuovi il prefisso prima di salvare
+            String updatedName = updatedText.replace("Camera's Name: ", "").trim();
+            cameraItem.setCameraName(updatedName);
+            itemListener.onCameraItemUpdated(cameraItem);
+            saveCameraItemToPreferences(cameraItem); // Salva l'item nelle preferenze
         });
 
-        // Imposta l'azione per eliminare la telecamera
         holder.deleteImageView.setOnClickListener(v -> {
-            cameraList.remove(position);
-            notifyItemRemoved(position);
-            notifyItemRangeChanged(position, cameraList.size());
+            // Rimuovi l'ID dalle preferenze
+            removeCameraIdFromPreferences(cameraItem.getCameraId());
+
+            // Rimuovi l'item dalla lista e aggiorna l'interfaccia utente
+            int currentPosition = holder.getAdapterPosition();
+            if (currentPosition != RecyclerView.NO_POSITION) {
+                cameraList.remove(currentPosition);
+                notifyItemRemoved(currentPosition);
+                notifyItemRangeChanged(currentPosition, cameraList.size());
+                itemListener.onCameraItemDeleted(cameraItem);
+            }
         });
 
-        // Imposta l'azione per avviare la connessione
         holder.playImageView.setOnClickListener(v -> {
-            // Qui puoi gestire l'avvio della connessione con la telecamera
+            // Implementa la funzionalità di riproduzione più tardi
         });
     }
 
@@ -70,5 +92,36 @@ public class CameraAdapter extends RecyclerView.Adapter<CameraAdapter.CameraView
             saveImageView = itemView.findViewById(R.id.saveImageView);
             playImageView = itemView.findViewById(R.id.playImageView);
         }
+    }
+
+    private void removeCameraIdFromPreferences(String cameraId) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("CameraPreferences", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        // Assume you store camera IDs in a set
+        Set<String> cameraIds = sharedPreferences.getStringSet("camera_ids", new HashSet<>());
+        if (cameraIds != null && cameraIds.contains(cameraId)) {
+            cameraIds.remove(cameraId);
+            editor.putStringSet("camera_ids", cameraIds);
+            editor.apply();
+        }
+    }
+
+    private void saveCameraItemToPreferences(CameraItem cameraItem) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("CameraPreferences", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        // Assume you store camera IDs and names in a map
+        Set<String> cameraIds = sharedPreferences.getStringSet("camera_ids", new HashSet<>());
+        if (cameraIds == null) {
+            cameraIds = new HashSet<>();
+        }
+        cameraIds.add(cameraItem.getCameraId());
+        editor.putStringSet("camera_ids", cameraIds);
+        editor.putString(cameraItem.getCameraId(), cameraItem.getCameraName()); // Salva il nome associato all'ID
+        editor.apply();
+    }
+
+    public interface CameraItemListener {
+        void onCameraItemUpdated(CameraItem cameraItem);
+        void onCameraItemDeleted(CameraItem cameraItem);
     }
 }
