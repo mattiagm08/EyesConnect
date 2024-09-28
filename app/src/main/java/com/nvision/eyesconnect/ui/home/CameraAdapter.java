@@ -1,6 +1,7 @@
 package com.nvision.eyesconnect.ui.home;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -70,7 +71,10 @@ public class CameraAdapter extends RecyclerView.Adapter<CameraAdapter.CameraView
         });
 
         holder.playImageView.setOnClickListener(v -> {
-            // Implementa la funzionalità di riproduzione più tardi
+            // Avvia CallActivity passando l'ID della telecamera
+            Intent intent = new Intent(context, CallActivity.class);
+            intent.putExtra("cameraId", cameraItem.getCameraId());
+            context.startActivity(intent);
         });
     }
 

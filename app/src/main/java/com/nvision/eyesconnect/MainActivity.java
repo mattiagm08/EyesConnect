@@ -1,5 +1,6 @@
 package com.nvision.eyesconnect;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ImageView imageView;
 
+    @SuppressLint("SourceLockedOrientationActivity")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

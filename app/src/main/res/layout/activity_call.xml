@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Vista video locale -->
+    <SurfaceView
+        android:id="@+id/localVideoView"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_alignParentTop="true"/>
+
+    <!-- Vista video remoto -->
+    <SurfaceView
+        android:id="@+id/remoteVideoView"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_below="@id/localVideoView"/>
+
+    <!-- Pulsante per avviare la chiamata -->
+    <Button
+        android:id="@+id/startCallButton"
+        android:layout_width="168dp"
+        android:layout_height="74dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp"
+        android:text="Inizia Chiamata"
+        android:textSize="16sp" />
+
+    <!-- Pulsante per terminare la chiamata -->
+    <Button
+        android:id="@+id/endCallButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Termina Chiamata"
+        android:layout_below="@id/startCallButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp"/>
+
+</RelativeLayout>
