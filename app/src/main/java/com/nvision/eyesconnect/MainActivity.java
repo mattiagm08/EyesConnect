@@ -80,9 +80,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
-        FirebaseDatabase.getInstance().getReference().child("masoud").setValue("Hello World!");
     }
 
     private void generateQRCode(String text) throws WriterException {

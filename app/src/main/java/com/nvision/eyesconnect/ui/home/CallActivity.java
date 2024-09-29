@@ -1,7 +1,8 @@
 package com.nvision.eyesconnect.ui.home;
 
 import android.os.Bundle;
-import android.view.SurfaceView;
+import android.util.Log;
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import org.webrtc.*;
 import com.google.firebase.database.DataSnapshot;
@@ -22,18 +23,13 @@ public class CallActivity extends AppCompatActivity {
     private DatabaseReference signalingRef;
     private VideoSource videoSource;
     private AudioSource audioSource;
-    private SurfaceView localVideoView;
-    private SurfaceView remoteVideoView;
     private EglBase eglBase;
+    private static final String TAG = "CallActivity";  // Tag for logging
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_call);
-
-        // Inizializza le SurfaceView
-        localVideoView = findViewById(R.id.localVideoView);
-        remoteVideoView = findViewById(R.id.remoteVideoView);
 
         // Configura Firebase
         signalingRef = FirebaseDatabase.getInstance().getReference("signaling");
@@ -42,6 +38,8 @@ public class CallActivity extends AppCompatActivity {
         initializePeerConnectionFactory();
         initializePeerConnections();
         addMediaStreamToConnection();
+
+        // Inizio segnalazione
         startSignaling();
     }
 
@@ -52,11 +50,19 @@ public class CallActivity extends AppCompatActivity {
                         .createInitializationOptions();
         PeerConnectionFactory.initialize(initializationOptions);
         peerConnectionFactory = PeerConnectionFactory.builder().createPeerConnectionFactory();
+
+        Toast.makeText(this, "PeerConnectionFactory initialized", Toast.LENGTH_SHORT).show();
     }
 
     private void initializePeerConnections() {
         PeerConnection.RTCConfiguration rtcConfig = new PeerConnection.RTCConfiguration(new ArrayList<>());
         peerConnection = peerConnectionFactory.createPeerConnection(rtcConfig, new CustomPeerConnectionObserver());
+
+        if (peerConnection != null) {
+            Toast.makeText(this, "Peer connection created", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Failed to create peer connection", Toast.LENGTH_LONG).show();
+        }
     }
 
     private void addMediaStreamToConnection() {
@@ -70,6 +76,7 @@ public class CallActivity extends AppCompatActivity {
         videoCapturer.initialize(surfaceTextureHelper, getApplicationContext(), videoSource.getCapturerObserver());
         videoCapturer.startCapture(1280, 720, 30);
         videoTrack = peerConnectionFactory.createVideoTrack("videoTrack", videoSource);
+        mediaStream.addTrack(videoTrack);
 
         // Configurazione audio
         audioSource = peerConnectionFactory.createAudioSource(new MediaConstraints());
@@ -77,6 +84,8 @@ public class CallActivity extends AppCompatActivity {
         mediaStream.addTrack(audioTrack);
 
         peerConnection.addStream(mediaStream);
+
+        Toast.makeText(this, "Media stream added to connection", Toast.LENGTH_SHORT).show();
     }
 
     private VideoCapturer createVideoCapturer() {
@@ -108,16 +117,25 @@ public class CallActivity extends AppCompatActivity {
             public void onCreateSuccess(SessionDescription sessionDescription) {
                 peerConnection.setLocalDescription(this, sessionDescription);
                 signalingRef.child("deviceId").child("offer").setValue(sessionDescription);
+                Toast.makeText(CallActivity.this, "Offer created and sent", Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "Offer created: " + sessionDescription);
             }
 
             @Override
-            public void onSetSuccess() {}
+            public void onSetSuccess() {
+                Log.d(TAG, "Local description set successfully");
+            }
 
             @Override
-            public void onCreateFailure(String error) {}
+            public void onCreateFailure(String error) {
+                Toast.makeText(CallActivity.this, "Failed to create offer", Toast.LENGTH_LONG).show();
+                Log.e(TAG, "Offer creation failed: " + error);
+            }
 
             @Override
-            public void onSetFailure(String error) {}
+            public void onSetFailure(String error) {
+                Log.e(TAG, "Failed to set local description: " + error);
+            }
         }, new MediaConstraints());
 
         signalingRef.child("deviceId").child("answer").addValueEventListener(new ValueEventListener() {
@@ -130,19 +148,26 @@ public class CallActivity extends AppCompatActivity {
                         public void onCreateSuccess(SessionDescription sessionDescription) {}
 
                         @Override
-                        public void onSetSuccess() {}
+                        public void onSetSuccess() {
+                            Toast.makeText(CallActivity.this, "Remote description set", Toast.LENGTH_SHORT).show();
+                            Log.d(TAG, "Remote description set: " + answer);
+                        }
 
                         @Override
                         public void onCreateFailure(String s) {}
 
                         @Override
-                        public void onSetFailure(String error) {}
+                        public void onSetFailure(String error) {
+                            Log.e(TAG, "Failed to set remote description: " + error);
+                        }
                     }, answer);
                 }
             }
 
             @Override
-            public void onCancelled(DatabaseError error) {}
+            public void onCancelled(DatabaseError error) {
+                Log.e(TAG, "Firebase data fetch cancelled: " + error.getMessage());
+            }
         });
     }
 
@@ -150,6 +175,8 @@ public class CallActivity extends AppCompatActivity {
         @Override
         public void onIceCandidate(IceCandidate iceCandidate) {
             signalingRef.child("deviceId").child("candidate").push().setValue(iceCandidate);
+            Toast.makeText(CallActivity.this, "ICE Candidate sent", Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "ICE Candidate sent: " + iceCandidate);
         }
 
         @Override
@@ -162,14 +189,18 @@ public class CallActivity extends AppCompatActivity {
         public void onIceConnectionReceivingChange(boolean b) {}
 
         @Override
-        public void onIceConnectionChange(PeerConnection.IceConnectionState iceConnectionState) {}
+        public void onIceConnectionChange(PeerConnection.IceConnectionState iceConnectionState) {
+            Toast.makeText(CallActivity.this, "ICE Connection State: " + iceConnectionState, Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "ICE Connection State: " + iceConnectionState);
+        }
 
         @Override
         public void onIceGatheringChange(PeerConnection.IceGatheringState iceGatheringState) {}
 
         @Override
         public void onAddStream(MediaStream mediaStream) {
-            // Gestisci lo stream remoto, ad esempio puoi integrarlo qui in `remoteVideoView` utilizzando un approccio adeguato
+            Toast.makeText(CallActivity.this, "Remote stream added", Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "Remote stream added");
         }
 
         @Override

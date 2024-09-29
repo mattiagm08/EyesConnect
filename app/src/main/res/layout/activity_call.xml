@@ -1,21 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="16dp">
 
     <!-- Vista video locale -->
-    <SurfaceView
+    <org.webrtc.SurfaceViewRenderer
         android:id="@+id/localVideoView"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:layout_alignParentTop="true"/>
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="8dp"/>
 
     <!-- Vista video remoto -->
-    <SurfaceView
+    <org.webrtc.SurfaceViewRenderer
         android:id="@+id/remoteVideoView"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:layout_below="@id/localVideoView"/>
+        android:layout_below="@id/localVideoView"
+        android:layout_marginBottom="8dp"/>
 
     <!-- Pulsante per avviare la chiamata -->
     <Button
@@ -24,18 +27,18 @@
         android:layout_height="74dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="16dp"
-        android:text="Inizia Chiamata"
-        android:textSize="16sp" />
+        android:text="Video Sharing"
+        android:textSize="18sp" />
 
     <!-- Pulsante per terminare la chiamata -->
     <Button
         android:id="@+id/endCallButton"
-        android:layout_width="wrap_content"
+        android:layout_width="168dp"
         android:layout_height="wrap_content"
-        android:text="Termina Chiamata"
         android:layout_below="@id/startCallButton"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="16dp"/>
+        android:text="End Call"
+        android:textSize="18sp"
+        android:layout_marginTop="8dp"/>
 
 </RelativeLayout>
