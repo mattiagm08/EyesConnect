@@ -39,7 +39,6 @@ public class HomeFragment extends Fragment {
             @Override
             public void onCameraItemUpdated(CameraItem cameraItem) {
                 // Gestisci l'aggiornamento del nome della telecamera
-                // Aggiorna la UI e le preferenze condivise (già gestito da CameraAdapter)
             }
 
             @Override

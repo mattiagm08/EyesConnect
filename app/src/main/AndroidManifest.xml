@@ -2,15 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- Permessi necessari per l'app -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <!-- Richiesta per l'uso della fotocamera, non obbligatoria -->
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false" />
-
-    <uses-permission android:name="android.permission.INTERNET" />
-
-    <uses-permission android:name="android.permission.CAMERA" />
-
-    <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
     <application
         android:allowBackup="true"
@@ -22,15 +23,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EyesConnect"
         tools:targetApi="31">
+
+        <!-- Definizione delle attività -->
         <activity
             android:name=".PanelActivity"
             android:exported="false"
             android:label="@string/title_activity_panel" />
+
         <activity
             android:name=".ScanActivity"
             android:exported="false"
             android:theme="@style/zxingTheme"
             tools:ignore="LockedOrientationActivity" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -40,9 +45,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Aggiungi qui l'attività CallActivity -->
+        <activity
+            android:name=".ui.home.CallActivity"
+            android:exported="false"
+            android:label="@string/title_activity_call" />
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
+        <!-- Aggiungi eventuali altre attività o servizi qui -->
     </application>
+
 
 </manifest>

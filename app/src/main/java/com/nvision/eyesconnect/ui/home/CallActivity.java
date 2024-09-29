@@ -112,13 +112,27 @@ public class CallActivity extends AppCompatActivity {
     }
 
     private void startSignaling() {
+        String deviceId = "deviceId1"; // Cambia qui con l'ID del tuo dispositivo
+
+        // Creazione dell'offerta
         peerConnection.createOffer(new SdpObserver() {
             @Override
             public void onCreateSuccess(SessionDescription sessionDescription) {
+                Log.d(TAG, "Offer created successfully.");
                 peerConnection.setLocalDescription(this, sessionDescription);
-                signalingRef.child("deviceId").child("offer").setValue(sessionDescription);
-                Toast.makeText(CallActivity.this, "Offer created and sent", Toast.LENGTH_SHORT).show();
-                Log.d(TAG, "Offer created: " + sessionDescription);
+
+                // Controlla se sessionDescription è valida
+                if (sessionDescription != null) {
+                    signalingRef.child(deviceId).child("offer").setValue(sessionDescription).addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            Log.d(TAG, "Offer sent to Firebase: " + sessionDescription);
+                        } else {
+                            Log.e(TAG, "Failed to send offer to Firebase.");
+                        }
+                    });
+                } else {
+                    Log.e(TAG, "SessionDescription is null.");
+                }
             }
 
             @Override
@@ -128,8 +142,7 @@ public class CallActivity extends AppCompatActivity {
 
             @Override
             public void onCreateFailure(String error) {
-                Toast.makeText(CallActivity.this, "Failed to create offer", Toast.LENGTH_LONG).show();
-                Log.e(TAG, "Offer creation failed: " + error);
+                Log.e(TAG, "Failed to create offer: " + error);
             }
 
             @Override
@@ -138,38 +151,47 @@ public class CallActivity extends AppCompatActivity {
             }
         }, new MediaConstraints());
 
-        signalingRef.child("deviceId").child("answer").addValueEventListener(new ValueEventListener() {
+        // Ascolto la risposta dal Firebase
+        signalingRef.child(deviceId).child("answer").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
-                SessionDescription answer = snapshot.getValue(SessionDescription.class);
-                if (answer != null) {
-                    peerConnection.setRemoteDescription(new SdpObserver() {
-                        @Override
-                        public void onCreateSuccess(SessionDescription sessionDescription) {}
+                if (snapshot.exists()) {
+                    SessionDescription answer = snapshot.getValue(SessionDescription.class);
+                    if (answer != null) {
+                        peerConnection.setRemoteDescription(new SdpObserver() {
+                            @Override
+                            public void onCreateSuccess(SessionDescription sessionDescription) {}
 
-                        @Override
-                        public void onSetSuccess() {
-                            Toast.makeText(CallActivity.this, "Remote description set", Toast.LENGTH_SHORT).show();
-                            Log.d(TAG, "Remote description set: " + answer);
-                        }
+                            @Override
+                            public void onSetSuccess() {
+                                Log.d(TAG, "Remote description set successfully.");
+                            }
 
-                        @Override
-                        public void onCreateFailure(String s) {}
+                            @Override
+                            public void onCreateFailure(String error) {
+                                Log.e(TAG, "Failed to create remote description: " + error);
+                            }
 
-                        @Override
-                        public void onSetFailure(String error) {
-                            Log.e(TAG, "Failed to set remote description: " + error);
-                        }
-                    }, answer);
+                            @Override
+                            public void onSetFailure(String error) {
+                                Log.e(TAG, "Failed to set remote description: " + error);
+                            }
+                        }, answer);
+                    } else {
+                        Log.e(TAG, "Received answer is null.");
+                    }
+                } else {
+                    Log.e(TAG, "No answer received.");
                 }
             }
 
             @Override
             public void onCancelled(DatabaseError error) {
-                Log.e(TAG, "Firebase data fetch cancelled: " + error.getMessage());
+                Log.e(TAG, "Firebase listener cancelled: " + error.getMessage());
             }
         });
     }
+
 
     private class CustomPeerConnectionObserver implements PeerConnection.Observer {
         @Override
