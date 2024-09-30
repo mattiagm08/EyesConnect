@@ -25,7 +25,8 @@ public class CallActivity extends AppCompatActivity {
     private AudioSource audioSource;
     private EglBase eglBase;
     private String roomId;
-    private String deviceId;
+    private String device1Id;
+    private String device2Id;
     private static final String TAG = "CallActivity";
 
     @Override
@@ -33,9 +34,10 @@ public class CallActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_call);
 
-        // Recupero l'ID della stanza e del dispositivo passato da ScanActivity o HomeFragment
+        // Recupero l'ID della stanza e i device ID passati da ScanActivity o HomeFragment
         roomId = getIntent().getStringExtra("roomId");
-        deviceId = getIntent().getStringExtra("deviceId");
+        device1Id = getIntent().getStringExtra("device1Id");
+        device2Id = getIntent().getStringExtra("device2Id");
 
         // Configura Firebase
         signalingRef = FirebaseDatabase.getInstance().getReference("signaling").child("rooms").child(roomId);
@@ -125,7 +127,7 @@ public class CallActivity extends AppCompatActivity {
                 Log.d(TAG, "Offer created successfully.");
                 peerConnection.setLocalDescription(this, sessionDescription);
 
-                signalingRef.child(deviceId).child("offer").setValue(sessionDescription).addOnCompleteListener(task -> {
+                signalingRef.child(device1Id).child("offer").setValue(sessionDescription).addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         Log.d(TAG, "Offer sent to Firebase: " + sessionDescription);
                     } else {
@@ -151,7 +153,7 @@ public class CallActivity extends AppCompatActivity {
         }, new MediaConstraints());
 
         // Ascolto la risposta dal Firebase
-        signalingRef.child(deviceId).child("answer").addValueEventListener(new ValueEventListener() {
+        signalingRef.child(device2Id).child("answer").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
                 if (snapshot.exists()) {
@@ -194,7 +196,7 @@ public class CallActivity extends AppCompatActivity {
     private class CustomPeerConnectionObserver implements PeerConnection.Observer {
         @Override
         public void onIceCandidate(IceCandidate iceCandidate) {
-            signalingRef.child(deviceId).child("candidates").push().setValue(iceCandidate);
+            signalingRef.child(device1Id).child("candidates").push().setValue(iceCandidate);
             Toast.makeText(CallActivity.this, "ICE Candidate sent", Toast.LENGTH_SHORT).show();
             Log.d(TAG, "ICE Candidate sent: " + iceCandidate);
         }
