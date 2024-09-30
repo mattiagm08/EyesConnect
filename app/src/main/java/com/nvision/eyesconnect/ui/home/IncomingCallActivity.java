@@ -14,39 +14,28 @@ import com.nvision.eyesconnect.R;
 
 import java.util.ArrayList;
 
-public class CallActivity extends AppCompatActivity {
+public class IncomingCallActivity extends AppCompatActivity {
 
     private PeerConnection peerConnection;
     private PeerConnectionFactory peerConnectionFactory;
-    private VideoTrack videoTrack;
-    private AudioTrack audioTrack;
     private DatabaseReference signalingRef;
-    private VideoSource videoSource;
-    private AudioSource audioSource;
-    private EglBase eglBase;
     private String roomId;
     private String deviceId;
-    private static final String TAG = "CallActivity";
+    private static final String TAG = "IncomingCallActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_call);
+        setContentView(R.layout.activity_incoming_call);
 
-        // Recupero l'ID della stanza e del dispositivo passato da ScanActivity o HomeFragment
         roomId = getIntent().getStringExtra("roomId");
         deviceId = getIntent().getStringExtra("deviceId");
 
-        // Configura Firebase
         signalingRef = FirebaseDatabase.getInstance().getReference("signaling").child("rooms").child(roomId);
 
-        // Configura WebRTC
         initializePeerConnectionFactory();
         initializePeerConnections();
-        addMediaStreamToConnection();
-
-        // Inizio segnalazione
-        startSignaling();
+        listenForOffer();
     }
 
     private void initializePeerConnectionFactory() {
@@ -56,8 +45,6 @@ public class CallActivity extends AppCompatActivity {
                         .createInitializationOptions();
         PeerConnectionFactory.initialize(initializationOptions);
         peerConnectionFactory = PeerConnectionFactory.builder().createPeerConnectionFactory();
-
-        Toast.makeText(this, "PeerConnectionFactory initialized", Toast.LENGTH_SHORT).show();
     }
 
     private void initializePeerConnections() {
@@ -71,92 +58,13 @@ public class CallActivity extends AppCompatActivity {
         }
     }
 
-    private void addMediaStreamToConnection() {
-        MediaStream mediaStream = peerConnectionFactory.createLocalMediaStream("mediaStream");
-
-        // Configurazione video
-        VideoCapturer videoCapturer = createVideoCapturer();
-        eglBase = EglBase.create();
-        SurfaceTextureHelper surfaceTextureHelper = SurfaceTextureHelper.create("CaptureThread", eglBase.getEglBaseContext());
-        videoSource = peerConnectionFactory.createVideoSource(videoCapturer.isScreencast());
-        videoCapturer.initialize(surfaceTextureHelper, getApplicationContext(), videoSource.getCapturerObserver());
-        videoCapturer.startCapture(1280, 720, 30);
-        videoTrack = peerConnectionFactory.createVideoTrack("videoTrack", videoSource);
-        mediaStream.addTrack(videoTrack);
-
-        // Configurazione audio
-        audioSource = peerConnectionFactory.createAudioSource(new MediaConstraints());
-        audioTrack = peerConnectionFactory.createAudioTrack("audioTrack", audioSource);
-        mediaStream.addTrack(audioTrack);
-
-        peerConnection.addStream(mediaStream);
-
-        Toast.makeText(this, "Media stream added to connection", Toast.LENGTH_SHORT).show();
-    }
-
-    private VideoCapturer createVideoCapturer() {
-        VideoCapturer videoCapturer;
-        if (Camera2Enumerator.isSupported(this)) {
-            videoCapturer = createCameraCapturer(new Camera2Enumerator(this));
-        } else {
-            videoCapturer = createCameraCapturer(new Camera1Enumerator(true));
-        }
-        return videoCapturer;
-    }
-
-    private VideoCapturer createCameraCapturer(CameraEnumerator enumerator) {
-        final String[] deviceNames = enumerator.getDeviceNames();
-        for (String deviceName : deviceNames) {
-            if (enumerator.isFrontFacing(deviceName)) {
-                VideoCapturer videoCapturer = enumerator.createCapturer(deviceName, null);
-                if (videoCapturer != null) {
-                    return videoCapturer;
-                }
-            }
-        }
-        return null;
-    }
-
-    private void startSignaling() {
-        // Creazione dell'offerta
-        peerConnection.createOffer(new SdpObserver() {
-            @Override
-            public void onCreateSuccess(SessionDescription sessionDescription) {
-                Log.d(TAG, "Offer created successfully.");
-                peerConnection.setLocalDescription(this, sessionDescription);
-
-                signalingRef.child(deviceId).child("offer").setValue(sessionDescription).addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        Log.d(TAG, "Offer sent to Firebase: " + sessionDescription);
-                    } else {
-                        Log.e(TAG, "Failed to send offer to Firebase.");
-                    }
-                });
-            }
-
-            @Override
-            public void onSetSuccess() {
-                Log.d(TAG, "Local description set successfully");
-            }
-
-            @Override
-            public void onCreateFailure(String error) {
-                Log.e(TAG, "Failed to create offer: " + error);
-            }
-
-            @Override
-            public void onSetFailure(String error) {
-                Log.e(TAG, "Failed to set local description: " + error);
-            }
-        }, new MediaConstraints());
-
-        // Ascolto la risposta dal Firebase
-        signalingRef.child(deviceId).child("answer").addValueEventListener(new ValueEventListener() {
+    private void listenForOffer() {
+        signalingRef.child(deviceId).child("offer").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
                 if (snapshot.exists()) {
-                    SessionDescription answer = snapshot.getValue(SessionDescription.class);
-                    if (answer != null) {
+                    SessionDescription offer = snapshot.getValue(SessionDescription.class);
+                    if (offer != null) {
                         peerConnection.setRemoteDescription(new SdpObserver() {
                             @Override
                             public void onCreateSuccess(SessionDescription sessionDescription) {}
@@ -164,6 +72,7 @@ public class CallActivity extends AppCompatActivity {
                             @Override
                             public void onSetSuccess() {
                                 Log.d(TAG, "Remote description set successfully.");
+                                answerCall();
                             }
 
                             @Override
@@ -175,12 +84,12 @@ public class CallActivity extends AppCompatActivity {
                             public void onSetFailure(String error) {
                                 Log.e(TAG, "Failed to set remote description: " + error);
                             }
-                        }, answer);
+                        }, offer);
                     } else {
-                        Log.e(TAG, "Received answer is null.");
+                        Log.e(TAG, "Received offer is null.");
                     }
                 } else {
-                    Log.e(TAG, "No answer received.");
+                    Log.e(TAG, "No offer received.");
                 }
             }
 
@@ -191,11 +100,44 @@ public class CallActivity extends AppCompatActivity {
         });
     }
 
+    private void answerCall() {
+        peerConnection.createAnswer(new SdpObserver() {
+            @Override
+            public void onCreateSuccess(SessionDescription sessionDescription) {
+                Log.d(TAG, "Answer created successfully.");
+                peerConnection.setLocalDescription(this, sessionDescription);
+
+                signalingRef.child(deviceId).child("answer").setValue(sessionDescription).addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        Log.d(TAG, "Answer sent to Firebase: " + sessionDescription);
+                    } else {
+                        Log.e(TAG, "Failed to send answer to Firebase.");
+                    }
+                });
+            }
+
+            @Override
+            public void onSetSuccess() {
+                Log.d(TAG, "Local description set successfully");
+            }
+
+            @Override
+            public void onCreateFailure(String error) {
+                Log.e(TAG, "Failed to create answer: " + error);
+            }
+
+            @Override
+            public void onSetFailure(String error) {
+                Log.e(TAG, "Failed to set local description: " + error);
+            }
+        }, new MediaConstraints());
+    }
+
     private class CustomPeerConnectionObserver implements PeerConnection.Observer {
         @Override
         public void onIceCandidate(IceCandidate iceCandidate) {
             signalingRef.child(deviceId).child("candidates").push().setValue(iceCandidate);
-            Toast.makeText(CallActivity.this, "ICE Candidate sent", Toast.LENGTH_SHORT).show();
+            Toast.makeText(IncomingCallActivity.this, "ICE Candidate sent", Toast.LENGTH_SHORT).show();
             Log.d(TAG, "ICE Candidate sent: " + iceCandidate);
         }
 
@@ -210,7 +152,7 @@ public class CallActivity extends AppCompatActivity {
 
         @Override
         public void onIceConnectionChange(PeerConnection.IceConnectionState iceConnectionState) {
-            Toast.makeText(CallActivity.this, "ICE Connection State: " + iceConnectionState, Toast.LENGTH_SHORT).show();
+            Toast.makeText(IncomingCallActivity.this, "ICE Connection State: " + iceConnectionState, Toast.LENGTH_SHORT).show();
             Log.d(TAG, "ICE Connection State: " + iceConnectionState);
         }
 
@@ -219,7 +161,7 @@ public class CallActivity extends AppCompatActivity {
 
         @Override
         public void onAddStream(MediaStream mediaStream) {
-            Toast.makeText(CallActivity.this, "Remote stream added", Toast.LENGTH_SHORT).show();
+            Toast.makeText(IncomingCallActivity.this, "Remote stream added", Toast.LENGTH_SHORT).show();
             Log.d(TAG, "Remote stream added");
         }
 
@@ -244,9 +186,6 @@ public class CallActivity extends AppCompatActivity {
         }
         if (peerConnectionFactory != null) {
             peerConnectionFactory.dispose();
-        }
-        if (eglBase != null) {
-            eglBase.release();
         }
     }
 }

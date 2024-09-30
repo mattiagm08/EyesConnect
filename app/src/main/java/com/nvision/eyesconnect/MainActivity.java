@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -15,7 +16,6 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.google.firebase.Firebase;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.zxing.BarcodeFormat;
@@ -26,6 +26,7 @@ import com.google.zxing.qrcode.QRCodeWriter;
 public class MainActivity extends AppCompatActivity {
 
     private ImageView imageView;
+    private String deviceID; // Il deviceID per questo dispositivo
 
     @SuppressLint("SourceLockedOrientationActivity")
     @Override
@@ -34,11 +35,9 @@ public class MainActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT); // Imposta l'orientamento a verticale
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+
+        // Ottenere l'Android ID per generare un deviceID univoco
+        deviceID = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
 
         imageView = findViewById(R.id.imageView);
         Button buttonQRCode = findViewById(R.id.buttonQRCode);
@@ -51,10 +50,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                 DatabaseReference roomRef = database.getReference("rooms").push();
-                String roomId = roomRef.getKey(); // Ottieni un identificatore univoco per la sessione
+                String roomId = roomRef.getKey(); // Ottieni un identificatore univoco per la stanza
 
                 try {
-                    generateQRCode(roomId); // Usa il room ID per generare il QR code
+                    String qrCodeData = roomId + "," + deviceID; // Concatenazione roomID e deviceID
+                    generateQRCode(qrCodeData); // Usa la stringa concatenata per generare il QR code
 
                     // Rende invisibile l'imageView3
                     imageView3.setVisibility(View.GONE);

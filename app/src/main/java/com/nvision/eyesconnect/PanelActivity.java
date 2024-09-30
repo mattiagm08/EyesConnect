@@ -36,12 +36,17 @@ public class PanelActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
 
-        // Get the roomId from the Intent
+        // Recupera i tre ID dall'Intent
         String roomId = getIntent().getStringExtra("ROOM_ID");
-        if (roomId != null) {
-            // Pass the roomId to the HomeFragment
+        String deviceID1 = getIntent().getStringExtra("DEVICE_ID_1");
+        String deviceID2 = getIntent().getStringExtra("DEVICE_ID_2");
+
+        if (roomId != null && deviceID1 != null && deviceID2 != null) {
+            // Passa i tre ID al HomeFragment
             Bundle bundle = new Bundle();
             bundle.putString("ROOM_ID", roomId);
+            bundle.putString("DEVICE_ID_1", deviceID1);
+            bundle.putString("DEVICE_ID_2", deviceID2);
             navController.navigate(R.id.navigation_home, bundle);
         }
 

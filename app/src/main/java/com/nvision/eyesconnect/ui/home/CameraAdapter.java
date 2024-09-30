@@ -71,9 +71,12 @@ public class CameraAdapter extends RecyclerView.Adapter<CameraAdapter.CameraView
         });
 
         holder.playImageView.setOnClickListener(v -> {
-            // Avvia CallActivity passando l'ID della telecamera
+            // Avvia CallActivity passando l'ID della telecamera e gli altri ID
             Intent intent = new Intent(context, CallActivity.class);
             intent.putExtra("cameraId", cameraItem.getCameraId());
+            intent.putExtra("roomId", cameraItem.getRoomId());  // Passa il roomId
+            intent.putExtra("deviceId1", cameraItem.getDeviceId1());  // Passa il deviceId1
+            intent.putExtra("deviceId2", cameraItem.getDeviceId2());  // Passa il deviceId2
             context.startActivity(intent);
         });
     }

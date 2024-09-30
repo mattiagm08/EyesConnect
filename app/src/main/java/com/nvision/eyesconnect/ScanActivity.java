@@ -1,8 +1,10 @@
 package com.nvision.eyesconnect;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.provider.Settings;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -13,7 +15,6 @@ import com.journeyapps.barcodescanner.DecoratedBarcodeView;
 import com.journeyapps.barcodescanner.BarcodeCallback;
 import com.journeyapps.barcodescanner.BarcodeResult;
 import com.google.zxing.ResultPoint;
-import com.nvision.eyesconnect.ui.home.HomeFragment;
 
 import java.util.List;
 
@@ -41,20 +42,35 @@ public class ScanActivity extends AppCompatActivity {
         barcodeScannerView.decodeSingle(new BarcodeCallback() {
             @Override
             public void barcodeResult(BarcodeResult result) {
-                String scannedRoomId = result.getText(); // Ottieni il roomId dal QR code
+                String scannedData = result.getText(); // Ottieni i dati dal QR code (roomID,deviceID2)
 
-                // Reindirizza a PanelActivity con il roomId
+                // Estrai il roomID e il deviceID2 dal QR code, supponiamo siano separati da una virgola
+                String[] parts = scannedData.split(",");
+                String roomId = parts[0];   // roomID
+                String deviceID2 = parts[1]; // deviceID2
+
+                // Ottieni l'ID del dispositivo che scannerizza (deviceID1)
+                String deviceID1 = getAndroidDeviceID();
+
+                // Reindirizza a PanelActivity passando roomID, deviceID1 e deviceID2
                 Intent intent = new Intent(ScanActivity.this, PanelActivity.class);
-                intent.putExtra("ROOM_ID", scannedRoomId);
+                intent.putExtra("ROOM_ID", roomId);
+                intent.putExtra("DEVICE_ID_1", deviceID1);
+                intent.putExtra("DEVICE_ID_2", deviceID2);
                 startActivity(intent);
                 finish(); // Termina l'activity corrente
             }
-//bho
+
             @Override
             public void possibleResultPoints(List<ResultPoint> resultPoints) {
                 // Non necessario per il tuo caso d'uso
             }
         });
+    }
+
+    private String getAndroidDeviceID() {
+        // Ottieni l'ID univoco del dispositivo che scannerizza
+        return Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
     }
 
     @Override

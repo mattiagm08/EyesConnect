@@ -2,33 +2,44 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="@android:color/black">
 
     <TextView
         android:id="@+id/incoming_call_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:text="Camera Request"
+        android:layout_marginTop="40dp"
+        android:text="Incoming Camera Request"
         android:textSize="28sp"
         android:textStyle="bold"
+        android:textColor="@android:color/white"
         android:layout_marginBottom="16dp" />
 
+    <!-- Bottone Accetta -->
     <Button
         android:id="@+id/accept_call_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="168dp"
+        android:layout_height="74dp"
         android:text="Accept"
+        android:textSize="18sp"
+        android:background="@android:color/holo_green_dark"
+        android:textColor="@android:color/white"
         android:layout_below="@id/incoming_call_text"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="2sp" />
+        android:layout_marginTop="16dp" />
 
+    <!-- Bottone Rifiuta -->
     <Button
         android:id="@+id/reject_call_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="168dp"
+        android:layout_height="74dp"
         android:text="Reject"
+        android:textSize="18sp"
+        android:background="@android:color/holo_red_dark"
+        android:textColor="@android:color/white"
         android:layout_below="@id/accept_call_button"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="2sp" />
+        android:layout_marginTop="16dp" />
 </RelativeLayout>
