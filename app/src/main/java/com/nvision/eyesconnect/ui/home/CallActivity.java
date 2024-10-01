@@ -39,6 +39,10 @@ public class CallActivity extends AppCompatActivity {
         device1Id = getIntent().getStringExtra("device1Id");
         device2Id = getIntent().getStringExtra("device2Id");
 
+        Toast.makeText(this, "RoomID: " + roomId, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Device1ID: " + device1Id, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Device2ID: " + device2Id, Toast.LENGTH_SHORT).show();
+
         // Configura Firebase
         signalingRef = FirebaseDatabase.getInstance().getReference("signaling").child("rooms").child(roomId);
 

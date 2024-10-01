@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView imageView;
     private String deviceID; // Il deviceID per questo dispositivo
 
-    @SuppressLint("SourceLockedOrientationActivity")
+    @SuppressLint({"SourceLockedOrientationActivity", "HardwareIds"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
