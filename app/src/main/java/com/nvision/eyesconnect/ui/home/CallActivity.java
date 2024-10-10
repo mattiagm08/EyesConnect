@@ -191,6 +191,25 @@ public class CallActivity extends AppCompatActivity {
                 Log.e(TAG, "Firebase listener cancelled: " + error.getMessage());
             }
         });
+
+        // Ascolta i candidati ICE di device2
+        signalingRef.child(device2Id).child("candidates").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                for (DataSnapshot candidateSnapshot : snapshot.getChildren()) {
+                    IceCandidate iceCandidate = candidateSnapshot.getValue(IceCandidate.class);
+                    if (iceCandidate != null) {
+                        peerConnection.addIceCandidate(iceCandidate);
+                        Log.d(TAG, "ICE Candidate received: " + iceCandidate);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                Log.e(TAG, "Firebase listener cancelled: " + error.getMessage());
+            }
+        });
     }
 
     private class CustomPeerConnectionObserver implements PeerConnection.Observer {
@@ -211,31 +230,31 @@ public class CallActivity extends AppCompatActivity {
         public void onIceConnectionReceivingChange(boolean b) {}
 
         @Override
-        public void onIceConnectionChange(PeerConnection.IceConnectionState iceConnectionState) {
-            Toast.makeText(CallActivity.this, "ICE Connection State: " + iceConnectionState, Toast.LENGTH_SHORT).show();
-            Log.d(TAG, "ICE Connection State: " + iceConnectionState);
+        public void onIceGatheringChange(PeerConnection.IceGatheringState iceGatheringState) {
+
         }
 
         @Override
-        public void onIceGatheringChange(PeerConnection.IceGatheringState iceGatheringState) {}
-
-        @Override
-        public void onAddStream(MediaStream mediaStream) {
-            Toast.makeText(CallActivity.this, "Remote stream added", Toast.LENGTH_SHORT).show();
-            Log.d(TAG, "Remote stream added");
+        public void onIceConnectionChange(PeerConnection.IceConnectionState iceConnectionState) {
+            Toast.makeText(CallActivity.this, "ICE Connection State: " + iceConnectionState, Toast.LENGTH_SHORT).show();
         }
 
         @Override
         public void onSignalingChange(PeerConnection.SignalingState signalingState) {}
 
         @Override
-        public void onRemoveStream(MediaStream mediaStream) {}
-
-        @Override
         public void onRenegotiationNeeded() {}
 
         @Override
-        public void onAddTrack(RtpReceiver rtpReceiver, MediaStream[] mediaStreams) {}
+        public void onAddTrack(RtpReceiver rtpReceiver, MediaStream[] mediaStreams) {
+
+        }
+
+        @Override
+        public void onAddStream(MediaStream mediaStream) {}
+
+        @Override
+        public void onRemoveStream(MediaStream mediaStream) {}
     }
 
     @Override
@@ -252,3 +271,4 @@ public class CallActivity extends AppCompatActivity {
         }
     }
 }
+

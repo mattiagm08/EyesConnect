@@ -10,7 +10,7 @@
     tools:context=".MainActivity"
     tools:ignore="ExtraText">
 
-    // FIXED
+    <!-- Descrizione App -->
     <TextView
         android:id="@+id/textView"
         android:layout_width="358dp"
@@ -21,13 +21,26 @@
         android:textColor="#FFFFFF"
         android:textSize="16dp"
         android:typeface="normal"
-        app:layout_constraintVertical_bias="0.5"
         app:layout_constraintBottom_toBottomOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="@+id/textView2"
         app:layout_constraintStart_toStartOf="@+id/textView2"
-        app:layout_constraintTop_toTopOf="@+id/textView2" />
+        app:layout_constraintTop_toTopOf="@+id/textView2"
+        app:layout_constraintVertical_bias="0.5"
+        tools:ignore="HardcodedText,SpUsage,TextSizeCheck,VisualLintOverlap" />
 
-    // FIXED
+    <!-- Sfondo Descrizione App -->
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="365dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="100dp"
+        android:background="#20FFFFFF"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Sfondo Titolo App -->
     <TextView
         android:id="@+id/textView3"
         android:layout_width="0dp"
@@ -38,7 +51,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    // FIXED
+    <!-- Titolo App -->
     <TextView
         android:id="@+id/textViewTitle"
         android:layout_width="wrap_content"
@@ -49,56 +62,14 @@
         android:textSize="36sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/textView3"
-        app:layout_constraintEnd_toEndOf="@id/textView3"
+        app:layout_constraintEnd_toEndOf="@+id/textView3"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintVertical_bias="0.5"
+        tools:ignore="HardcodedText" />
 
-    // FIXED
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="545sp"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:src="@tools:sample/avatars" />
-
-    // FIXED
-    <Button
-        android:id="@+id/buttonQRCode"
-        android:layout_width="147dp"
-        android:layout_height="51dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="180dp"
-        android:backgroundTint="#661AED"
-        android:textSize="18sp"
-        android:text="QR Code"
-        android:textColor="#FFFFFF"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView" />
-
-    // FIXED
-    <Button
-        android:id="@+id/buttonScanner"
-        android:layout_width="146dp"
-        android:layout_height="50dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginTop="180dp"
-        android:backgroundTint="#661AED"
-        android:text="Scanner"
-        android:textColor="#FFFFFF"
-        android:textSize="18sp"
-        android:textStyle="bold"
-
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView" />
-
-    // FIXED
+    <!-- Descrizione QR Code -->
     <TextView
         android:id="@+id/textView5"
         android:layout_width="168dp"
@@ -110,9 +81,10 @@
         android:textColor="@color/white"
         android:textSize="13sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonQRCode" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonQRCode"
+        tools:ignore="HardcodedText,TextSizeCheck" />
 
-    // FIXED
+    <!-- Descrizione Scanner -->
     <TextView
         android:id="@+id/textView6"
         android:layout_width="158dp"
@@ -125,59 +97,37 @@
         android:textColor="@color/white"
         android:textSize="13sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonScanner" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonScanner"
+        tools:ignore="HardcodedText,TextSizeCheck" />
 
-    // FIXED
+    <!-- QR Code Visualizzatore -->
     <ImageView
-        android:id="@+id/imageView10"
-        android:layout_width="242dp"
-        android:layout_height="298dp"
-        android:layout_marginTop="154dp"
+        android:id="@+id/imageView"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="545sp"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/scan_qr_code_removebg_preview" />
+        tools:src="@tools:sample/avatars"
+        tools:ignore="ContentDescription" />
 
-    // FIXED
-    <ImageView
-        android:id="@+id/imageView11"
-        android:layout_width="149dp"
-        android:layout_height="225dp"
-        android:layout_marginLeft="28dp"
-        android:layout_marginTop="195dp"
-        android:src="@drawable/pic1769941_rl_02_removebg_preview"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
-
-    // FIXED
+    <!-- Pannello Principale -->
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="74dp"
         android:layout_height="128dp"
         android:layout_marginLeft="320dp"
-        android:layout_marginEnd="10dp"
         android:layout_marginTop="-25dp"
+        android:layout_marginEnd="10dp"
         app:layout_constraintEnd_toEndOf="@+id/textView3"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/sony_xdcam_video_camera_high_definition_video_video_camera_png_image_removebg_preview"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="ContentDescription,MissingConstraints,VisualLintBounds,ImageContrastCheck" />
 
-    // FIXED
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="365dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="100dp"
-        android:background="#20FFFFFF"
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    // FIXED
-
+    <!-- Televisore QR Code -->
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="404dp"
@@ -187,7 +137,63 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView10"
-        app:srcCompat="@drawable/fdb4abda_b623_4802_a6bd_21d36e9540b0_removebg_preview" />
+        app:srcCompat="@drawable/fdb4abda_b623_4802_a6bd_21d36e9540b0_removebg_preview"
+        tools:ignore="ContentDescription" />
 
+    <!-- Scanner Immagine (user) -->
+    <ImageView
+        android:id="@+id/imageView10"
+        android:layout_width="242dp"
+        android:layout_height="298dp"
+        android:layout_marginTop="154dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/scan_qr_code_removebg_preview"
+        tools:ignore="ContentDescription" />
+
+    <!-- QR Code Immagine (user) -->
+    <ImageView
+        android:id="@+id/imageView11"
+        android:layout_width="149dp"
+        android:layout_height="225dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="195dp"
+        android:src="@drawable/pic1769941_rl_02_removebg_preview"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription,MissingConstraints" />
+
+    <!-- Bottone QR Code -->
+    <Button
+        android:id="@+id/buttonQRCode"
+        android:layout_width="147dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="180dp"
+        android:backgroundTint="#661AED"
+        android:textSize="18sp"
+        android:text="QR Code"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView"
+        tools:ignore="HardcodedText" />
+
+    <!-- Bottone Scanner -->
+    <Button
+        android:id="@+id/buttonScanner"
+        android:layout_width="146dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="180dp"
+        android:backgroundTint="#661AED"
+        android:text="Scanner"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView"
+        tools:ignore="HardcodedText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

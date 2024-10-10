@@ -1,6 +1,6 @@
 package com.nvision.eyesconnect;
 
-import android.content.Context;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -23,6 +23,7 @@ public class ScanActivity extends AppCompatActivity {
     private CaptureManager capture;
     private DecoratedBarcodeView barcodeScannerView;
 
+    @SuppressLint("SourceLockedOrientationActivity")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,11 +53,8 @@ public class ScanActivity extends AppCompatActivity {
                 // Ottieni l'ID del dispositivo che scannerizza (deviceID1)
                 String deviceID1 = getAndroidDeviceID();
 
-                // Reindirizza a PanelActivity passando roomID, deviceID1 e deviceID2
-                Intent intent = new Intent(ScanActivity.this, PanelActivity.class);
-                intent.putExtra("ROOM_ID", roomId);
-                intent.putExtra("DEVICE_ID_1", deviceID1);
-                intent.putExtra("DEVICE_ID_2", deviceID2);
+                // Usa il metodo estratto per creare l'Intent
+                Intent intent = createPanelActivityIntent(roomId, deviceID1, deviceID2);
                 startActivity(intent);
                 finish(); // Termina l'activity corrente
             }
@@ -68,6 +66,21 @@ public class ScanActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Metodo che crea l'Intent per avviare PanelActivity, passando roomID, deviceID1 e deviceID2.
+     */
+    private Intent createPanelActivityIntent(String roomId, String deviceID1, String deviceID2) {
+        Intent intent = new Intent(this, PanelActivity.class);
+        intent.putExtra("ROOM_ID", roomId);
+        intent.putExtra("DEVICE_ID_1", deviceID1);
+        intent.putExtra("DEVICE_ID_2", deviceID2);
+        return intent;
+    }
+
+    /**
+     * Metodo per ottenere l'ID univoco del dispositivo che sta scannerizzando il QR code.
+     */
+    @SuppressLint("HardwareIds")
     private String getAndroidDeviceID() {
         // Ottieni l'ID univoco del dispositivo che scannerizza
         return Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
@@ -95,13 +108,5 @@ public class ScanActivity extends AppCompatActivity {
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         capture.onSaveInstanceState(outState);
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        Intent intent = new Intent(ScanActivity.this, MainActivity.class);
-        startActivity(intent);
-        finish();
     }
 }
