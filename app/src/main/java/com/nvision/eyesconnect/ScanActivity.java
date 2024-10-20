@@ -47,14 +47,14 @@ public class ScanActivity extends AppCompatActivity {
 
                 // Estrai il roomID e il deviceID2 dal QR code, supponiamo siano separati da una virgola
                 String[] parts = scannedData.split(",");
-                String roomId = parts[0];   // roomID
+                String roomID = parts[0];   // roomID
                 String deviceID2 = parts[1]; // deviceID2
 
                 // Ottieni l'ID del dispositivo che scannerizza (deviceID1)
                 String deviceID1 = getAndroidDeviceID();
 
                 // Usa il metodo estratto per creare l'Intent
-                Intent intent = createPanelActivityIntent(roomId, deviceID1, deviceID2);
+                Intent intent = createPanelActivityIntent(roomID, deviceID1, deviceID2);
                 startActivity(intent);
                 finish(); // Termina l'activity corrente
             }
@@ -66,20 +66,14 @@ public class ScanActivity extends AppCompatActivity {
         });
     }
 
-    /**
-     * Metodo che crea l'Intent per avviare PanelActivity, passando roomID, deviceID1 e deviceID2.
-     */
-    private Intent createPanelActivityIntent(String roomId, String deviceID1, String deviceID2) {
+    private Intent createPanelActivityIntent(String roomID, String deviceID1, String deviceID2) {
         Intent intent = new Intent(this, PanelActivity.class);
-        intent.putExtra("ROOM_ID", roomId);
+        intent.putExtra("ROOM_ID", roomID);
         intent.putExtra("DEVICE_ID_1", deviceID1);
         intent.putExtra("DEVICE_ID_2", deviceID2);
         return intent;
     }
 
-    /**
-     * Metodo per ottenere l'ID univoco del dispositivo che sta scannerizzando il QR code.
-     */
     @SuppressLint("HardwareIds")
     private String getAndroidDeviceID() {
         // Ottieni l'ID univoco del dispositivo che scannerizza

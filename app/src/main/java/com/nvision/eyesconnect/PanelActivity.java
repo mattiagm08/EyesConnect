@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast; // Importa Toast
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.navigation.NavController;
@@ -41,20 +42,27 @@ public class PanelActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(binding.navView, navController);
 
         // Recupera i tre ID dall'Intent
-        String roomId = getIntent().getStringExtra("ROOM_ID");
+        String roomID = getIntent().getStringExtra("ROOM_ID");
         String deviceID1 = getIntent().getStringExtra("DEVICE_ID_1");
         String deviceID2 = getIntent().getStringExtra("DEVICE_ID_2");
 
         // Verifica che gli ID siano stati passati correttamente
-        if (roomId != null && deviceID1 != null && deviceID2 != null) {
-            // Crea un Bundle per passare i tre ID al HomeFragment
+        if (roomID != null && deviceID1 != null && deviceID2 != null) {
             Bundle bundle = new Bundle();
-            bundle.putString("ROOM_ID", roomId);
+            bundle.putString("ROOM_ID", roomID);
             bundle.putString("DEVICE_ID_1", deviceID1);
             bundle.putString("DEVICE_ID_2", deviceID2);
-            // Naviga verso il HomeFragment con i dati
+
             navController.navigate(R.id.navigation_home, bundle);
+        } else {
+            Toast.makeText(this, "One of the IDs is null", Toast.LENGTH_SHORT).show();
         }
+
+        // Mostra i valori con Toast
+        Toast.makeText(this, "Room ID: " + roomID, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "DeviceID 1: " + deviceID1, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "DeviceID 2: " + deviceID2, Toast.LENGTH_SHORT).show();
+
 
         // Aggiungi OnClickListener per l'ImageView con ID "imageView4"
         ImageView imageView4 = findViewById(R.id.imageView4);

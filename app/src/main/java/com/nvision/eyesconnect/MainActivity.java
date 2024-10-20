@@ -64,11 +64,11 @@ public class MainActivity extends AppCompatActivity {
                 // Crea un riferimento al database Firebase per creare una nuova stanza (room)
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                 DatabaseReference roomRef = database.getReference("rooms").push();
-                String roomId = roomRef.getKey(); // Ottieni un identificatore univoco per la stanza
+                String roomID = roomRef.getKey(); // Ottieni un identificatore univoco per la stanza
 
                 try {
                     // Crea il contenuto del QR code con roomID e deviceID
-                    String qrCodeData = roomId + "," + deviceID;
+                    String qrCodeData = roomID + "," + deviceID;
                     generateQRCode(qrCodeData); // Genera il QR code con i dati concatenati
 
                     // Rende invisibile l'imageView3 una volta generato il QR code
