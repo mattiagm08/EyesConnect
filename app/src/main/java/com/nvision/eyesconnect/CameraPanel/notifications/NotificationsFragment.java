@@ -1,4 +1,4 @@
-package com.nvision.eyesconnect.ui.notifications;
+package com.nvision.eyesconnect.CameraPanel.notifications;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

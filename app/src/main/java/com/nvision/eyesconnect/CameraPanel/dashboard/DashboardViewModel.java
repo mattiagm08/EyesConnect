@@ -1,4 +1,4 @@
-package com.nvision.eyesconnect.ui.dashboard;
+package com.nvision.eyesconnect.CameraPanel.dashboard;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

@@ -26,18 +26,18 @@
 
         <!-- Definizione delle attività -->
         <activity
-            android:name=".PanelActivity"
+            android:name=".CameraPanel.PanelActivity"
             android:exported="false"
             android:label="@string/title_activity_panel" />
 
         <activity
-            android:name=".ScanActivity"
+            android:name=".ScannerQRCode.ScanActivity"
             android:exported="false"
             android:theme="@style/zxingTheme"
             tools:ignore="LockedOrientationActivity" />
 
         <activity
-            android:name=".MainActivity"
+            android:name=".MainCore.MainActivity"
             android:exported="true"
             tools:ignore="LockedOrientationActivity">
             <intent-filter>
@@ -48,7 +48,7 @@
 
         <!-- Aggiungi qui l'attività CallActivity -->
         <activity
-            android:name=".ui.home.CallActivity"
+            android:name=".CameraPanel.home.CallActivity"
             android:exported="false"
             android:label="@string/title_activity_call" />
 

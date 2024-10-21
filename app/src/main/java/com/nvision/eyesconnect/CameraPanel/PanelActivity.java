@@ -1,10 +1,9 @@
-package com.nvision.eyesconnect;
+package com.nvision.eyesconnect.CameraPanel;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast; // Importa Toast
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.navigation.NavController;
@@ -12,20 +11,19 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.nvision.eyesconnect.MainCore.MainActivity;
+import com.nvision.eyesconnect.R;
 import com.nvision.eyesconnect.databinding.ActivityPanelBinding;
 
 public class PanelActivity extends AppCompatActivity {
-
-    // Variabile per il binding dell'attività
-    private ActivityPanelBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         // Inizializza il binding e imposta il contenuto della vista
-        binding = ActivityPanelBinding.inflate(getLayoutInflater());
+        // Variabile per il binding dell'attività
+        com.nvision.eyesconnect.databinding.ActivityPanelBinding binding = ActivityPanelBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         // Imposta la toolbar
@@ -33,7 +31,6 @@ public class PanelActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         // Configura la navigazione di fondo e il controller di navigazione
-        BottomNavigationView navView = findViewById(R.id.nav_view);
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
                 .build();
@@ -66,15 +63,12 @@ public class PanelActivity extends AppCompatActivity {
 
         // Aggiungi OnClickListener per l'ImageView con ID "imageView4"
         ImageView imageView4 = findViewById(R.id.imageView4);
-        imageView4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Crea un Intent per avviare MainActivity
-                Intent intent = new Intent(PanelActivity.this, MainActivity.class);
-                startActivity(intent);
-                // Termina PanelActivity dopo aver avviato MainActivity (opzionale)
-                finish();
-            }
+        imageView4.setOnClickListener(v -> {
+            // Crea un Intent per avviare MainActivity
+            Intent intent = new Intent(PanelActivity.this, MainActivity.class);
+            startActivity(intent);
+            // Termina PanelActivity dopo aver avviato MainActivity (opzionale)
+            finish();
         });
     }
 }

@@ -1,4 +1,4 @@
-package com.nvision.eyesconnect;
+package com.nvision.eyesconnect.MainCore;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -22,12 +22,15 @@ import com.google.zxing.BarcodeFormat;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
+import com.nvision.eyesconnect.CameraPanel.PanelActivity;
+import com.nvision.eyesconnect.R;
+import com.nvision.eyesconnect.ScannerQRCode.ScanActivity;
 
 /** @noinspection ALL*/
 public class MainActivity extends AppCompatActivity {
 
     private ImageView imageView;
-    private String deviceID; // Il deviceID per questo dispositivo
+    private String deviceID1; // Il deviceID per questo dispositivo
 
     @SuppressLint({"SourceLockedOrientationActivity", "HardwareIds"})
     @Override
@@ -36,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Imposta l'orientamento dello schermo a verticale
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
         // Attiva l'interfaccia a schermo intero (edge-to-edge)
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
@@ -48,10 +52,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // Ottenere l'Android ID per generare un deviceID univoco
-        deviceID = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
+        deviceID1 = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
 
         // Inizializza le viste per i vari elementi nel layout
-        imageView = findViewById(R.id.imageView);
+        imageView = findViewById(R.id.imageView); // Visualizzatore QR Code
         Button buttonQRCode = findViewById(R.id.buttonQRCode); // Bottone per generare QR code
         Button buttonScanner = findViewById(R.id.buttonScanner); // Bottone per aprire lo scanner
         ImageView imageView2 = findViewById(R.id.imageView2); // Icona per navigare al pannello
@@ -61,14 +65,16 @@ public class MainActivity extends AppCompatActivity {
         buttonQRCode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 // Crea un riferimento al database Firebase per creare una nuova stanza (room)
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                 DatabaseReference roomRef = database.getReference("rooms").push();
+
                 String roomID = roomRef.getKey(); // Ottieni un identificatore univoco per la stanza
 
                 try {
                     // Crea il contenuto del QR code con roomID e deviceID
-                    String qrCodeData = roomID + "," + deviceID;
+                    String qrCodeData = roomID + "," + deviceID1;
                     generateQRCode(qrCodeData); // Genera il QR code con i dati concatenati
 
                     // Rende invisibile l'imageView3 una volta generato il QR code

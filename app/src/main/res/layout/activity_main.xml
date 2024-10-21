@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#0E0E0E"
-    tools:context=".MainActivity"
+    tools:context=".MainCore.MainActivity"
     tools:ignore="ExtraText">
 
     <!-- Descrizione App -->

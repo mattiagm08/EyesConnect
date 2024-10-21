@@ -8,37 +8,29 @@
     <org.webrtc.SurfaceViewRenderer
         android:id="@+id/localVideoView"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="320dp"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginBottom="8dp"/>
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp" />
 
     <!-- Vista video remoto -->
     <org.webrtc.SurfaceViewRenderer
         android:id="@+id/remoteVideoView"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_below="@id/localVideoView"
-        android:layout_marginBottom="8dp"/>
+        android:layout_height="320dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="24dp" />
 
     <!-- Pulsante per avviare la chiamata -->
-    <Button
-        android:id="@+id/startCallButton"
-        android:layout_width="168dp"
-        android:layout_height="74dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:text="Video Sharing"
-        android:textSize="18sp" />
 
     <!-- Pulsante per terminare la chiamata -->
-    <Button
-        android:id="@+id/endCallButton"
-        android:layout_width="168dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/startCallButton"
-        android:layout_centerHorizontal="true"
-        android:text="End Call"
-        android:textSize="18sp"
-        android:layout_marginTop="8dp"/>
 
 </RelativeLayout>

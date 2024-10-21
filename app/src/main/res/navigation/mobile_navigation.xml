@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.nvision.eyesconnect.ui.home.HomeFragment"
+        android:name="com.nvision.eyesconnect.CameraPanel.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -17,7 +17,7 @@
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.nvision.eyesconnect.ui.dashboard.DashboardFragment"
+        android:name="com.nvision.eyesconnect.CameraPanel.dashboard.DashboardFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_dashboard" >
         <action
@@ -27,7 +27,7 @@
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.nvision.eyesconnect.ui.notifications.NotificationsFragment"
+        android:name="com.nvision.eyesconnect.CameraPanel.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
 </navigation>

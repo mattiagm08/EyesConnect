@@ -1,16 +1,16 @@
-package com.nvision.eyesconnect.ui.notifications;
+package com.nvision.eyesconnect.CameraPanel.home;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class NotificationsViewModel extends ViewModel {
+public class HomeViewModel extends ViewModel {
 
     private final MutableLiveData<String> mText;
 
-    public NotificationsViewModel() {
+    public HomeViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("No New Notifications.");
+        mText.setValue("No Camera Connected.");
     }
 
     public LiveData<String> getText() {

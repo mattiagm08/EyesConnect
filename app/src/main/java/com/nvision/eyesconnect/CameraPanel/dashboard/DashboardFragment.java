@@ -1,4 +1,4 @@
-package com.nvision.eyesconnect.ui.dashboard;
+package com.nvision.eyesconnect.CameraPanel.dashboard;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

@@ -1,4 +1,4 @@
-package com.nvision.eyesconnect;
+package com.nvision.eyesconnect.ScannerQRCode;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -15,27 +15,31 @@ import com.journeyapps.barcodescanner.DecoratedBarcodeView;
 import com.journeyapps.barcodescanner.BarcodeCallback;
 import com.journeyapps.barcodescanner.BarcodeResult;
 import com.google.zxing.ResultPoint;
+import com.nvision.eyesconnect.CameraPanel.PanelActivity;
+import com.nvision.eyesconnect.R;
 
 import java.util.List;
 
 public class ScanActivity extends AppCompatActivity {
 
     private CaptureManager capture;
-    private DecoratedBarcodeView barcodeScannerView;
 
     @SuppressLint("SourceLockedOrientationActivity")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT); // Imposta l'orientamento a verticale
+
         setContentView(R.layout.activity_scan);
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-        barcodeScannerView = findViewById(R.id.zxing_barcode_scanner);
+        DecoratedBarcodeView barcodeScannerView = findViewById(R.id.zxing_barcode_scanner);
         capture = new CaptureManager(this, barcodeScannerView);
         capture.initializeFromIntent(getIntent(), savedInstanceState);
         capture.decode();
