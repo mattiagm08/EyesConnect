@@ -1,19 +1,20 @@
 package com.nvision.eyesconnect.CameraPanel.home;
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+import java.util.ArrayList;
+import java.util.List;
 
 public class HomeViewModel extends ViewModel {
+    private final List<CameraItem> cameraList = new ArrayList<>();
 
-    private final MutableLiveData<String> mText;
-
-    public HomeViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("No Camera Connected.");
+    public List<CameraItem> getCameraList() {
+        return cameraList;
     }
 
-    public LiveData<String> getText() {
-        return mText;
+    public void addCamera(CameraItem camera) {
+        // Evita duplicati verificando se l'elemento è già presente
+        if (!cameraList.contains(camera)) {
+            cameraList.add(camera);
+        }
     }
 }
