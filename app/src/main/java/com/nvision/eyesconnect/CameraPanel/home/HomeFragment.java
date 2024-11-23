@@ -16,7 +16,6 @@ import com.nvision.eyesconnect.databinding.FragmentHomeBinding;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
-import java.util.ArrayList;
 import java.util.List;
 
 public class HomeFragment extends Fragment {
@@ -24,12 +23,12 @@ public class HomeFragment extends Fragment {
     private FragmentHomeBinding binding;
     private HomeViewModel homeViewModel;
     private CameraAdapter cameraAdapter;
-    private boolean isDataLoaded = false; // Per assicurarsi che i dati vengano caricati una sola volta
+    private boolean isDataLoaded = false; // Per evitare caricamenti multipli
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setRetainInstance(true); // Mantieni il fragment durante i cambi di configurazione
+        setRetainInstance(true); // Mantieni il fragment durante cambi di configurazione
     }
 
     @Override
@@ -37,7 +36,6 @@ public class HomeFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         homeViewModel = new ViewModelProvider(requireActivity()).get(HomeViewModel.class);
 
-        // Carica i dati salvati una sola volta
         if (!isDataLoaded) {
             loadCameraListFromPreferences();
             isDataLoaded = true;
@@ -46,16 +44,13 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        // Configura il RecyclerView
         cameraAdapter = new CameraAdapter(homeViewModel.getCameraList());
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.recyclerView.setAdapter(cameraAdapter);
 
-        // Gestisci gli argomenti passati
         handleIncomingArguments(getArguments());
-
-        // Mostra o nascondi il testo "No Cameras"
         updateNoCamerasText();
+
         return root;
     }
 
@@ -81,8 +76,7 @@ public class HomeFragment extends Fragment {
     private void saveCameraListToPreferences() {
         SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("camera_data", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        Gson gson = new Gson();
-        String json = gson.toJson(homeViewModel.getCameraList());
+        String json = new Gson().toJson(homeViewModel.getCameraList());
         editor.putString("camera_list", json);
         editor.apply();
     }
@@ -93,20 +87,18 @@ public class HomeFragment extends Fragment {
             String deviceID1 = arguments.getString("DEVICE_ID_1");
             String deviceID2 = arguments.getString("DEVICE_ID_2");
 
-            // Evita duplicati
             boolean alreadyExists = false;
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 alreadyExists = homeViewModel.getCameraList().stream()
-                        .anyMatch(item -> item.roomID.equals(roomID));
+                        .anyMatch(item -> item.getRoomID().equals(roomID));
             }
 
             if (!alreadyExists) {
-                // Aggiungi un nuovo CameraItem
                 CameraItem camera = new CameraItem();
-                camera.roomID = roomID;
-                camera.deviceID1 = deviceID1;
-                camera.deviceID2 = deviceID2;
-                camera.cameraName = "Camera " + (homeViewModel.getCameraList().size() + 1);
+                camera.setRoomID(roomID);
+                camera.setDeviceID1(deviceID1);
+                camera.setDeviceID2(deviceID2);
+                camera.setCameraName("Camera's Name: ");
 
                 homeViewModel.addCamera(camera);
                 cameraAdapter.notifyItemInserted(homeViewModel.getCameraList().size() - 1);
@@ -115,7 +107,6 @@ public class HomeFragment extends Fragment {
     }
 
     private void updateNoCamerasText() {
-        // Mostra un messaggio se la lista è vuota
         if (homeViewModel.getCameraList().isEmpty()) {
             binding.textHome.setVisibility(View.VISIBLE);
         } else {
