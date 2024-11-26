@@ -16,6 +16,7 @@ import com.nvision.eyesconnect.databinding.FragmentHomeBinding;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 
 public class HomeFragment extends Fragment {
@@ -44,7 +45,7 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        cameraAdapter = new CameraAdapter(homeViewModel.getCameraList());
+        cameraAdapter = new CameraAdapter((ArrayList<CameraItem>) homeViewModel.getCameraList());
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.recyclerView.setAdapter(cameraAdapter);
 

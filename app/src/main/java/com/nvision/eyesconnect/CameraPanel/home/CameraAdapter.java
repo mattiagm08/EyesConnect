@@ -44,8 +44,14 @@ public class CameraAdapter extends RecyclerView.Adapter<CameraAdapter.CameraView
         holder.roomID.setText("Room ID: " + camera.getRoomID());
         holder.deviceIDs.setText("Device 1: " + camera.getDeviceID1() + "\nDevice 2: " + camera.getDeviceID2());
 
+        // Modifica il nome della telecamera
         holder.cameraName.setOnClickListener(v -> {
             showEditNameDialog(holder.itemView.getContext(), camera, holder.getAdapterPosition());
+        });
+
+        // Elimina l'elemento quando si clicca sull'icona di eliminazione
+        holder.deleteIcon.setOnClickListener(v -> {
+            removeCamera(holder.getAdapterPosition());
         });
     }
 
@@ -78,6 +84,14 @@ public class CameraAdapter extends RecyclerView.Adapter<CameraAdapter.CameraView
         builder.show();
     }
 
+    private void removeCamera(int position) {
+        if (position >= 0 && position < cameraList.size()) {
+            cameraList.remove(position);
+            notifyItemRemoved(position);
+            notifyItemRangeChanged(position, cameraList.size());
+        }
+    }
+
     public static class CameraViewHolder extends RecyclerView.ViewHolder {
         TextView cameraName, roomID, deviceIDs;
         ImageView deleteIcon, playIcon;
@@ -87,6 +101,8 @@ public class CameraAdapter extends RecyclerView.Adapter<CameraAdapter.CameraView
             cameraName = itemView.findViewById(R.id.camera_name);
             roomID = itemView.findViewById(R.id.room_id);
             deviceIDs = itemView.findViewById(R.id.device_ids);
+            deleteIcon = itemView.findViewById(R.id.imageView5); // Icona di eliminazione
+            playIcon = itemView.findViewById(R.id.imageView6);   // Icona di avvio
         }
     }
 }

@@ -8,6 +8,15 @@
     android:layout_height="match_parent"
     tools:context=".ScannerQRCode.ScanActivity">
 
+  <Button
+      android:id="@+id/button_select_from_gallery"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Gallery"
+      android:layout_gravity="center_horizontal"
+      android:layout_marginTop="16dp"
+      tools:ignore="HardcodedText,MissingConstraints" />
+
   <com.journeyapps.barcodescanner.DecoratedBarcodeView
       android:id="@+id/zxing_barcode_scanner"
       android:layout_width="match_parent"
