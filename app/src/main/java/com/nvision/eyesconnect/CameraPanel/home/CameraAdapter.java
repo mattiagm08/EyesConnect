@@ -22,9 +22,15 @@ import java.util.List;
 public class CameraAdapter extends RecyclerView.Adapter<CameraAdapter.CameraViewHolder> {
 
     private final List<CameraItem> cameraList;
+    private final OnCameraListChangeListener listChangeListener;
 
-    public CameraAdapter(List<CameraItem> cameraList) {
+    public interface OnCameraListChangeListener {
+        void onCameraListChanged(boolean isEmpty);
+    }
+
+    public CameraAdapter(List<CameraItem> cameraList, OnCameraListChangeListener listChangeListener) {
         this.cameraList = cameraList;
+        this.listChangeListener = listChangeListener;
     }
 
     @NonNull
@@ -89,6 +95,11 @@ public class CameraAdapter extends RecyclerView.Adapter<CameraAdapter.CameraView
             cameraList.remove(position);
             notifyItemRemoved(position);
             notifyItemRangeChanged(position, cameraList.size());
+
+            // Notifica il listener
+            if (listChangeListener != null) {
+                listChangeListener.onCameraListChanged(cameraList.isEmpty());
+            }
         }
     }
 

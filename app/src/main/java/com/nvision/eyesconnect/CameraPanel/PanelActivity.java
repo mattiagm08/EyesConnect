@@ -51,14 +51,13 @@ public class PanelActivity extends AppCompatActivity {
             bundle.putString("DEVICE_ID_2", deviceID2);
 
             navController.navigate(R.id.navigation_home, bundle);
-        } else {
-            Toast.makeText(this, "One of the IDs is null", Toast.LENGTH_SHORT).show();
         }
 
         // Mostra i valori con Toast
-        Toast.makeText(this, "Room ID: " + roomID, Toast.LENGTH_SHORT).show();
+
+        /* Toast.makeText(this, "Room ID: " + roomID, Toast.LENGTH_SHORT).show();
         Toast.makeText(this, "DeviceID 1: " + deviceID1, Toast.LENGTH_SHORT).show();
-        Toast.makeText(this, "DeviceID 2: " + deviceID2, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "DeviceID 2: " + deviceID2, Toast.LENGTH_SHORT).show(); */
 
 
         // Aggiungi OnClickListener per l'ImageView con ID "imageView4"

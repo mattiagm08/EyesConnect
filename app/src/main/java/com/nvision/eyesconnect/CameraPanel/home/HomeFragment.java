@@ -45,12 +45,16 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        cameraAdapter = new CameraAdapter((ArrayList<CameraItem>) homeViewModel.getCameraList());
+        cameraAdapter = new CameraAdapter(
+                homeViewModel.getCameraList(),
+                this::updateNoCamerasText
+        );
+
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.recyclerView.setAdapter(cameraAdapter);
 
         handleIncomingArguments(getArguments());
-        updateNoCamerasText();
+        updateNoCamerasText(homeViewModel.getCameraList().isEmpty());
 
         return root;
     }
@@ -107,8 +111,8 @@ public class HomeFragment extends Fragment {
         }
     }
 
-    private void updateNoCamerasText() {
-        if (homeViewModel.getCameraList().isEmpty()) {
+    private void updateNoCamerasText(boolean isEmpty) {
+        if (isEmpty) {
             binding.textHome.setVisibility(View.VISIBLE);
         } else {
             binding.textHome.setVisibility(View.GONE);
