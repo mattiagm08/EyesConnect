@@ -9,6 +9,7 @@ import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -65,26 +66,34 @@ public class MainActivity extends AppCompatActivity {
         buttonQRCode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                // Crea un riferimento al database Firebase per creare una nuova stanza (room)
+                // Crea un riferimento al database Firebase
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference roomRef = database.getReference("rooms").push();
+                DatabaseReference roomRef = database.getReference("signaling/rooms").push();
 
-                String roomID = roomRef.getKey(); // Ottieni un identificatore univoco per la stanza
+                String roomID = roomRef.getKey(); // Ottieni un ID unico per la stanza
+                if (roomID == null) {
+                    Toast.makeText(MainActivity.this, "Error generating room ID", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                // Inizializza i nodi per device1 e device2
+                roomRef.child("device1").setValue(new DeviceData());
+                roomRef.child("device2").setValue(new DeviceData());
 
                 try {
                     // Crea il contenuto del QR code con roomID e deviceID
                     String qrCodeData = roomID + "," + deviceID1;
                     generateQRCode(qrCodeData); // Genera il QR code con i dati concatenati
 
-                    // Rende invisibile l'imageView3 una volta generato il QR code
-                    imageView3.setVisibility(View.GONE);
+                    imageView3.setVisibility(View.GONE); // Nascondi immagine statica se necessario
 
                 } catch (WriterException e) {
-                    e.printStackTrace(); // Gestisce eventuali errori nella generazione del QR code
+                    e.printStackTrace(); // Log dell'errore
+                    Toast.makeText(MainActivity.this, "Error generating QR code", Toast.LENGTH_SHORT).show();
                 }
             }
         });
+
 
         // Listener per il bottone che apre l'attività di scansione QR code
         buttonScanner.setOnClickListener(new View.OnClickListener() {

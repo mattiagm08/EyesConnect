@@ -2,6 +2,7 @@ package com.nvision.eyesconnect.CameraPanel.home;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.nvision.eyesconnect.CameraPanel.home.CallActivity;
 import com.nvision.eyesconnect.R;
 
 import java.util.List;
@@ -58,6 +60,20 @@ public class CameraAdapter extends RecyclerView.Adapter<CameraAdapter.CameraView
         // Elimina l'elemento quando si clicca sull'icona di eliminazione
         holder.deleteIcon.setOnClickListener(v -> {
             removeCamera(holder.getAdapterPosition());
+        });
+
+        // Avvia la connessione quando si clicca sull'icona play
+        holder.playIcon.setOnClickListener(v -> {
+            String roomID = camera.getRoomID();
+            String deviceID1 = camera.getDeviceID1();
+            String deviceID2 = camera.getDeviceID2();
+
+            // Passa questi dati all'activity CallActivity
+            Intent intent = new Intent(v.getContext(), CallActivity.class);
+            intent.putExtra("ROOM_ID", roomID);
+            intent.putExtra("DEVICE_ID_1", deviceID1);
+            intent.putExtra("DEVICE_ID_2", deviceID2);
+            v.getContext().startActivity(intent);
         });
     }
 
