@@ -1,20 +1,33 @@
 package com.nvision.eyesconnect.CameraPanel.home;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import com.nvision.eyesconnect.databinding.FragmentHomeBinding;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.nvision.eyesconnect.CameraPanel.home.Connections.CallActivity;
+import com.nvision.eyesconnect.R;
+import com.nvision.eyesconnect.databinding.FragmentHomeBinding;
+
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +38,7 @@ public class HomeFragment extends Fragment {
     private HomeViewModel homeViewModel;
     private CameraAdapter cameraAdapter;
     private boolean isDataLoaded = false; // Per evitare caricamenti multipli
+    private DatabaseReference incomingCallsRef; // Firebase riferimento
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -55,6 +69,9 @@ public class HomeFragment extends Fragment {
 
         handleIncomingArguments(getArguments());
         updateNoCamerasText(homeViewModel.getCameraList().isEmpty());
+
+        // Inizializzare ascolto delle chiamate in arrivo
+        listenForIncomingCalls();
 
         return root;
     }
@@ -117,5 +134,52 @@ public class HomeFragment extends Fragment {
         } else {
             binding.textHome.setVisibility(View.GONE);
         }
+    }
+
+    private void listenForIncomingCalls() {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        incomingCallsRef = database.getReference("incoming_calls");
+
+        incomingCallsRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot callSnapshot : snapshot.getChildren()) {
+                    String roomID = callSnapshot.child("roomID").getValue(String.class);
+                    String callerDeviceID = callSnapshot.child("callerDeviceID").getValue(String.class);
+                    String calleeDeviceID = callSnapshot.child("calleeDeviceID").getValue(String.class);
+
+                    if (calleeDeviceID != null && calleeDeviceID.equals(getDeviceID())) {
+                        showIncomingCallDialog(roomID, callerDeviceID, calleeDeviceID);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getContext(), "Failed to listen for incoming calls", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void showIncomingCallDialog(String roomID, String callerDeviceID, String calleeDeviceID) {
+        new AlertDialog.Builder(getContext())
+                .setTitle("Incoming Call")
+                .setMessage("You have an incoming call from " + callerDeviceID)
+                .setPositiveButton("Accept", (dialog, which) -> {
+                    Intent intent = new Intent(getContext(), CallActivity.class);
+                    intent.putExtra("ROOM_ID", roomID);
+                    intent.putExtra("DEVICE_ID_1", callerDeviceID);
+                    intent.putExtra("DEVICE_ID_2", calleeDeviceID);
+                    startActivity(intent);
+                })
+                .setNegativeButton("Decline", (dialog, which) -> {
+                    dialog.dismiss();
+                })
+                .show();
+    }
+
+    private String getDeviceID() {
+        SharedPreferences preferences = requireActivity().getSharedPreferences("device_prefs", Context.MODE_PRIVATE);
+        return preferences.getString("device_id", "UNKNOWN");
     }
 }

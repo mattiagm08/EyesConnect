@@ -16,7 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.nvision.eyesconnect.CameraPanel.home.CallActivity;
+import com.nvision.eyesconnect.CameraPanel.home.Connections.CallActivity;
 import com.nvision.eyesconnect.R;
 
 import java.util.List;
