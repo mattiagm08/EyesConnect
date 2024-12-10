@@ -31,7 +31,6 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_margin="16dp"
-        android:background="#673AB7"
         android:text="End Call"
         android:textColor="@android:color/white"
         android:textSize="18sp"

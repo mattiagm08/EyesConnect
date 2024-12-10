@@ -10,12 +10,10 @@ import android.provider.MediaStore;
 import android.provider.Settings;
 import android.widget.Button;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-
 import com.google.zxing.BinaryBitmap;
 import com.google.zxing.RGBLuminanceSource;
 import com.google.zxing.Reader;
@@ -28,7 +26,6 @@ import com.journeyapps.barcodescanner.BarcodeResult;
 import com.google.zxing.ResultPoint;
 import com.nvision.eyesconnect.CameraPanel.PanelActivity;
 import com.nvision.eyesconnect.R;
-
 import java.io.IOException;
 import java.util.List;
 

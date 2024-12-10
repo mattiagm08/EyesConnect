@@ -1,11 +1,14 @@
 package com.nvision.eyesconnect.MainCore;
 
 public class DeviceData {
+
+    // Dichiarazione elementi Firebase (dentro i deviceID)
     private String answer;
     private String candidates;
     private String offer;
 
     // Costruttore vuoto richiesto da Firebase
+
     public DeviceData() {
         this.answer = "null";
         this.candidates = "null";
@@ -13,6 +16,7 @@ public class DeviceData {
     }
 
     // Costruttore con parametri (opzionale)
+
     public DeviceData(String answer, String candidates, String offer) {
         this.answer = answer;
         this.candidates = candidates;
@@ -20,6 +24,7 @@ public class DeviceData {
     }
 
     // Getter e Setter
+
     public String getAnswer() {
         return answer;
     }
