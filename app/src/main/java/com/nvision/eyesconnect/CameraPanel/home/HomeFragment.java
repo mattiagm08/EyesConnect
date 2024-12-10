@@ -86,7 +86,8 @@ public class HomeFragment extends Fragment {
         SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("camera_data", Context.MODE_PRIVATE);
         String json = sharedPreferences.getString("camera_list", null);
         if (json != null) {
-            Type type = new TypeToken<List<CameraItem>>() {}.getType();
+            Type type = new TypeToken<List<CameraItem>>() {
+            }.getType();
             List<CameraItem> savedList = new Gson().fromJson(json, type);
             if (savedList != null) {
                 homeViewModel.getCameraList().clear();
@@ -136,50 +137,14 @@ public class HomeFragment extends Fragment {
         }
     }
 
-    private void listenForIncomingCalls() {
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        incomingCallsRef = database.getReference("incoming_calls");
-
-        incomingCallsRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot callSnapshot : snapshot.getChildren()) {
-                    String roomID = callSnapshot.child("roomID").getValue(String.class);
-                    String callerDeviceID = callSnapshot.child("callerDeviceID").getValue(String.class);
-                    String calleeDeviceID = callSnapshot.child("calleeDeviceID").getValue(String.class);
-
-                    if (calleeDeviceID != null && calleeDeviceID.equals(getDeviceID())) {
-                        showIncomingCallDialog(roomID, callerDeviceID, calleeDeviceID);
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getContext(), "Failed to listen for incoming calls", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-    private void showIncomingCallDialog(String roomID, String callerDeviceID, String calleeDeviceID) {
-        new AlertDialog.Builder(getContext())
-                .setTitle("Incoming Call")
-                .setMessage("You have an incoming call from " + callerDeviceID)
-                .setPositiveButton("Accept", (dialog, which) -> {
-                    Intent intent = new Intent(getContext(), CallActivity.class);
-                    intent.putExtra("ROOM_ID", roomID);
-                    intent.putExtra("DEVICE_ID_1", callerDeviceID);
-                    intent.putExtra("DEVICE_ID_2", calleeDeviceID);
-                    startActivity(intent);
-                })
-                .setNegativeButton("Decline", (dialog, which) -> {
-                    dialog.dismiss();
-                })
-                .show();
-    }
-
     private String getDeviceID() {
         SharedPreferences preferences = requireActivity().getSharedPreferences("device_prefs", Context.MODE_PRIVATE);
         return preferences.getString("device_id", "UNKNOWN");
     }
+
+
+    private void listenForIncomingCalls() {
+        //Da implementare
+    }
+
 }

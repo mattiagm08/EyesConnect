@@ -20,21 +20,22 @@
         tools:ignore="HardcodedText" />
 
     <!-- Bottone Accetta -->
+
+    <!-- Bottone Rifiuta -->
     <Button
         android:id="@+id/accept_call_button"
         android:layout_width="150dp"
         android:layout_height="60dp"
         android:layout_below="@id/incoming_call_text"
         android:layout_alignParentStart="true"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="16dp"
-        android:background="@android:color/holo_green_light"
         android:text="Accept"
         android:textColor="@android:color/white"
         android:textSize="20sp"
         tools:ignore="HardcodedText,TextContrastCheck" />
 
-    <!-- Bottone Rifiuta -->
     <Button
         android:id="@+id/reject_call_button"
         android:layout_width="150dp"
@@ -42,7 +43,7 @@
         android:layout_below="@id/incoming_call_text"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="40dp"
-        android:background="@android:color/holo_red_dark"
+        android:layout_marginEnd="10dp"
         android:text="Reject"
         android:textColor="@android:color/white"
         android:textSize="20sp"

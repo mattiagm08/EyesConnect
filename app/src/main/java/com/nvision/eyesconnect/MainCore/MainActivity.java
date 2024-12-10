@@ -24,14 +24,18 @@ import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 import com.nvision.eyesconnect.CameraPanel.PanelActivity;
+import com.nvision.eyesconnect.CameraPanel.home.HomeFragment;
 import com.nvision.eyesconnect.R;
 import com.nvision.eyesconnect.ScannerQRCode.ScanActivity;
 
-/** @noinspection ALL*/
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
     private ImageView imageView;
     private String deviceID1; // Il deviceID per questo dispositivo
+    private List<String> myIDRooms; // Lista delle stanze generate dal dispositivo
 
     @SuppressLint({"SourceLockedOrientationActivity", "HardwareIds"})
     @Override
@@ -55,6 +59,9 @@ public class MainActivity extends AppCompatActivity {
         // Ottenere l'Android ID per generare un deviceID univoco
         deviceID1 = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
 
+        // Inizializza la lista per le stanze generate
+        myIDRooms = new ArrayList<>();
+
         // Inizializza le viste per i vari elementi nel layout
         imageView = findViewById(R.id.imageView); // Visualizzatore QR Code
         Button buttonQRCode = findViewById(R.id.buttonQRCode); // Bottone per generare QR code
@@ -76,6 +83,9 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
 
+                // Aggiungi il roomID alla lista
+                myIDRooms.add(roomID);
+
                 // Inizializza i nodi per device1 e device2
                 roomRef.child("device1").setValue(new DeviceData());
                 roomRef.child("device2").setValue(new DeviceData());
@@ -94,7 +104,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
         // Listener per il bottone che apre l'attività di scansione QR code
         buttonScanner.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,6 +121,12 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent); // Avvia l'attività del pannello
             }
         });
+
+        // Passa la lista myIDRooms all'HomeFragment
+        Bundle bundle = new Bundle();
+        bundle.putStringArrayList("roomIDs", (ArrayList<String>) myIDRooms);
+        HomeFragment homeFragment = new HomeFragment();
+        homeFragment.setArguments(bundle);
     }
 
     // Metodo per generare un QR code

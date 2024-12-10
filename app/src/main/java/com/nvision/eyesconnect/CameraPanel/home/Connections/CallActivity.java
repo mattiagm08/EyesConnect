@@ -127,11 +127,15 @@ public class CallActivity extends AppCompatActivity {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         roomRef = database.getReference("signaling/rooms/" + roomID);
 
-        // Check for existing offer
-        roomRef.child(deviceID1).child("offer").addListenerForSingleValueEvent(new ValueEventListener() {
+        // Controlla se esiste già un'offerta per device1
+        roomRef.child("device2").child("offer").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
-                if (!snapshot.exists()) {
+                if (snapshot.exists() && snapshot.getValue() != null) {
+                    // Se l'offerta esiste già, aggiorna il valore
+                    updateOffer();
+                } else {
+                    // Altrimenti, crea una nuova offerta
                     createOffer();
                 }
             }
@@ -142,8 +146,8 @@ public class CallActivity extends AppCompatActivity {
             }
         });
 
-        // Listen for answer from device2
-        roomRef.child(deviceID2).child("answer").addValueEventListener(new ValueEventListener() {
+        // Listen for answer from device2 (the correct place where the answer will be saved)
+        roomRef.child("device2").child("answer").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
                 if (snapshot.exists()) {
@@ -159,7 +163,7 @@ public class CallActivity extends AppCompatActivity {
         });
 
         // Listen for ICE candidates from device2
-        roomRef.child(deviceID2).child("candidates").addChildEventListener(new ChildEventListener() {
+        roomRef.child("device2").child("candidates").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot snapshot, String previousChildName) {
                 IceCandidate iceCandidate = snapshot.getValue(IceCandidate.class);
@@ -190,9 +194,21 @@ public class CallActivity extends AppCompatActivity {
             @Override
             public void onCreateSuccess(SessionDescription sdp) {
                 peerConnection.setLocalDescription(new SimpleSdpObserver(), sdp);
-                roomRef.child(deviceID1).child("offer").setValue(sdp);
+                // Scrivi l'offerta sotto device2, nel nodo della stanza
+                roomRef.child("device2").child("offer").setValue(sdp);
             }
         }, constraints);
+    }
+
+    private void updateOffer() {
+        // Modifica l'offerta sotto device1, se esiste già
+        peerConnection.createOffer(new SimpleSdpObserver() {
+            @Override
+            public void onCreateSuccess(SessionDescription sdp) {
+                peerConnection.setLocalDescription(new SimpleSdpObserver(), sdp);
+                roomRef.child("device2").child("offer").setValue(sdp); // Aggiorna il nodo con la nuova offerta
+            }
+        }, new MediaConstraints());
     }
 
     private void endCall() throws InterruptedException {
