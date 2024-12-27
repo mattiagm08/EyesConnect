@@ -86,10 +86,6 @@ public class HomeFragment extends Fragment {
 
         updateNoCamerasText(homeViewModel.getCameraList().isEmpty());
 
-        // Inizializza l'ascolto per le chiamate in arrivo
-
-        listenForIncomingCalls();
-
         return root; // Ritorna la vista radice
     }
 
@@ -171,12 +167,5 @@ public class HomeFragment extends Fragment {
     private String getDeviceID() {
         SharedPreferences preferences = requireActivity().getSharedPreferences("device_prefs", Context.MODE_PRIVATE);
         return preferences.getString("device_id", "UNKNOWN"); // Ritorna l'ID del dispositivo, o "UNKNOWN" se non trovato
-    }
-
-    // Metodo per inizializzare l'ascolto delle chiamate in arrivo
-    private void listenForIncomingCalls() {
-
-        // Da implementare: qui si ascolteranno le chiamate in arrivo da Firebase
-
     }
 }
