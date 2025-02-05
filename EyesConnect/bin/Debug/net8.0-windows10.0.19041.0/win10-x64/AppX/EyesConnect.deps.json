@@ -7,7 +7,7 @@
   "targets": {
     ".NETCoreApp,Version=v8.0": {},
     ".NETCoreApp,Version=v8.0/win10-x64": {
-      "EyesConnect/0.0.1": {
+      "EyesConnect/0.0.2": {
         "dependencies": {
           "Microsoft.Extensions.Logging.Debug": "8.0.1",
           "Microsoft.Maui.Controls": "8.0.100",
@@ -448,7 +448,7 @@
     }
   },
   "libraries": {
-    "EyesConnect/0.0.1": {
+    "EyesConnect/0.0.2": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

@@ -29,25 +29,25 @@
     <AppXManifest Include="C:\Users\matti\Desktop\EyesConnect\EyesConnect\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2025-02-05T16:15:57.132</Modified>
+      <Modified>2025-02-05T16:36:03.536</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\matti\Desktop\EyesConnect\EyesConnect\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2025-02-05T14:31:08.905</Modified>
+      <Modified>2025-02-05T16:36:03.363</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\matti\Desktop\EyesConnect\EyesConnect\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\EyesConnect.runtimeconfig.json">
       <PackagePath>EyesConnect.runtimeconfig.json</PackagePath>
-      <Modified>2025-02-05T14:31:08.525</Modified>
+      <Modified>2025-02-05T16:36:02.801</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\matti\Desktop\EyesConnect\EyesConnect\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\EyesConnect.dll">
       <PackagePath>EyesConnect.dll</PackagePath>
-      <Modified>2025-02-05T16:15:55.885</Modified>
+      <Modified>2025-02-05T16:36:01.470</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\matti\Desktop\EyesConnect\EyesConnect\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\apphost.exe">
       <PackagePath>EyesConnect.exe</PackagePath>
-      <Modified>2025-02-05T16:15:55.963</Modified>
+      <Modified>2025-02-05T16:36:01.550</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\matti\Desktop\EyesConnect\EyesConnect\Resources\Raw\AboutAssets.txt">
       <PackagePath>AboutAssets.txt</PackagePath>
@@ -287,7 +287,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\matti\Desktop\EyesConnect\EyesConnect\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\EyesConnect.deps.json">
       <PackagePath>EyesConnect.deps.json</PackagePath>
-      <Modified>2025-02-05T14:31:08.299</Modified>
+      <Modified>2025-02-05T16:36:02.661</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\matti\.nuget\packages\microsoft.windows.sdk.net.ref\10.0.19041.57\lib\net8.0\Microsoft.Windows.SDK.NET.dll">
       <PackagePath>Microsoft.Windows.SDK.NET.dll</PackagePath>

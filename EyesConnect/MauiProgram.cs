@@ -19,7 +19,7 @@ namespace EyesConnect
     		builder.Logging.AddDebug();
 #endif
 
-
+            // VERSIONE 0.0.2
 
             return builder.Build();
         }

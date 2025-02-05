@@ -33165,7 +33165,7 @@
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
-    "version": "0.0.1",
+    "version": "0.0.2",
     "restore": {
       "projectUniqueName": "C:\\Users\\matti\\Desktop\\EyesConnect\\EyesConnect\\EyesConnect.csproj",
       "projectName": "EyesConnect",
