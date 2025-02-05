@@ -19,6 +19,7 @@ namespace EyesConnect
     		builder.Logging.AddDebug();
 #endif
 
+
             return builder.Build();
         }
     }
