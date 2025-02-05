@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("EyesConnect")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("0.0.1.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("0.0.1+c9670e9483f1cd308713ce151203310473a873d2")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("0.0.1+b09225b87da406f8c2b7529e15381b5f7074a9e5")]
 [assembly: System.Reflection.AssemblyProductAttribute("EyesConnect")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EyesConnect")]
 [assembly: System.Reflection.AssemblyVersionAttribute("0.0.1.0")]
