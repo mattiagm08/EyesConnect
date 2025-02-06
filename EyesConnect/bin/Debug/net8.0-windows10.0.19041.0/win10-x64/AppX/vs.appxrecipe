@@ -8,7 +8,7 @@
     <TargetOsDescription>Windows 10.0</TargetOsDescription>
     <SolutionConfiguration>Debug|AnyCPU</SolutionConfiguration>
     <PackageArchitecture>x64</PackageArchitecture>
-    <PackageIdentityName>com.companyname.eyesconnect</PackageIdentityName>
+    <PackageIdentityName>com.nvision.eyesconnect</PackageIdentityName>
     <PackageIdentityPublisher>CN=User Name</PackageIdentityPublisher>
     <IntermediateOutputPath>C:\Users\matti\Desktop\EyesConnect\EyesConnect\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\</IntermediateOutputPath>
     <RemoteDeploymentType>CopyToDevice</RemoteDeploymentType>
@@ -18,276 +18,276 @@
     <DeployOptionalPackages>false</DeployOptionalPackages>
     <WindowsSdkPath>C:\Program Files %28x86%29\Windows Kits\10\</WindowsSdkPath>
     <LayoutDir>C:\Users\matti\Desktop\EyesConnect\EyesConnect\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\AppX</LayoutDir>
-    <RegisteredManifestChecksum>73F453988147325F6AC17A2B5BC5C78B1E00DD37A2CC3C7A59F4033A661198F7</RegisteredManifestChecksum>
-    <RegisteredPackageMoniker>com.companyname.eyesconnect_1.0.0.1_x64__9zz4h110yvjzm</RegisteredPackageMoniker>
-    <RegisteredUserModeAppID>com.companyname.eyesconnect_9zz4h110yvjzm!App</RegisteredUserModeAppID>
-    <RegisteredPackageID>com.companyname.eyesconnect</RegisteredPackageID>
+    <RegisteredManifestChecksum>A2274C285074644774BD8234DC13447F0790A0B4D90A6DEF14B9F52E1970E877</RegisteredManifestChecksum>
+    <RegisteredPackageMoniker>com.nvision.eyesconnect_0.0.2.2_x64__9zz4h110yvjzm</RegisteredPackageMoniker>
+    <RegisteredUserModeAppID>com.nvision.eyesconnect_9zz4h110yvjzm!App</RegisteredUserModeAppID>
+    <RegisteredPackageID>com.nvision.eyesconnect</RegisteredPackageID>
     <RegisteredPackagePublisher>CN=User Name</RegisteredPackagePublisher>
-    <RegisteredVersion>1.0.0.1</RegisteredVersion>
+    <RegisteredVersion>0.0.2.2</RegisteredVersion>
   </PropertyGroup>
   <ItemGroup>
     <AppXManifest Include="C:\Users\matti\Desktop\EyesConnect\EyesConnect\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2025-02-05T16:36:03.536</Modified>
+      <Modified>2025-02-06T21:44:55.266</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\matti\Desktop\EyesConnect\EyesConnect\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2025-02-05T16:36:03.363</Modified>
+      <Modified>2025-02-06T21:44:55.080</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\matti\Desktop\EyesConnect\EyesConnect\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\EyesConnect.runtimeconfig.json">
       <PackagePath>EyesConnect.runtimeconfig.json</PackagePath>
-      <Modified>2025-02-05T16:36:02.801</Modified>
+      <Modified>2025-02-06T21:44:54.799</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\matti\Desktop\EyesConnect\EyesConnect\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\EyesConnect.dll">
       <PackagePath>EyesConnect.dll</PackagePath>
-      <Modified>2025-02-05T16:36:01.470</Modified>
+      <Modified>2025-02-06T21:44:53.590</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\matti\Desktop\EyesConnect\EyesConnect\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\apphost.exe">
       <PackagePath>EyesConnect.exe</PackagePath>
-      <Modified>2025-02-05T16:36:01.550</Modified>
+      <Modified>2025-02-06T21:44:53.688</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\matti\Desktop\EyesConnect\EyesConnect\Resources\Raw\AboutAssets.txt">
       <PackagePath>AboutAssets.txt</PackagePath>
-      <Modified>2025-02-05T14:25:09.355</Modified>
+      <Modified>2025-02-06T21:36:13.871</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\matti\Desktop\EyesConnect\EyesConnect\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\sp\splashSplashScreen.scale-100.png">
       <PackagePath>splashSplashScreen.scale-100.png</PackagePath>
-      <Modified>2025-02-05T14:26:14.589</Modified>
+      <Modified>2025-02-06T21:36:51.761</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\matti\Desktop\EyesConnect\EyesConnect\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\sp\splashSplashScreen.scale-125.png">
       <PackagePath>splashSplashScreen.scale-125.png</PackagePath>
-      <Modified>2025-02-05T14:26:14.620</Modified>
+      <Modified>2025-02-06T21:36:51.782</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\matti\Desktop\EyesConnect\EyesConnect\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\sp\splashSplashScreen.scale-150.png">
       <PackagePath>splashSplashScreen.scale-150.png</PackagePath>
-      <Modified>2025-02-05T14:26:14.668</Modified>
+      <Modified>2025-02-06T21:36:51.823</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\matti\Desktop\EyesConnect\EyesConnect\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\sp\splashSplashScreen.scale-200.png">
       <PackagePath>splashSplashScreen.scale-200.png</PackagePath>
-      <Modified>2025-02-05T14:26:14.726</Modified>
+      <Modified>2025-02-06T21:36:51.869</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\matti\Desktop\EyesConnect\EyesConnect\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\sp\splashSplashScreen.scale-400.png">
       <PackagePath>splashSplashScreen.scale-400.png</PackagePath>
-      <Modified>2025-02-05T14:26:14.946</Modified>
+      <Modified>2025-02-06T21:36:52.049</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\matti\Desktop\EyesConnect\EyesConnect\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\f\OpenSans-Regular.ttf">
       <PackagePath>OpenSans-Regular.ttf</PackagePath>
-      <Modified>2025-02-05T14:25:09.344</Modified>
+      <Modified>2025-02-06T21:36:13.869</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\matti\Desktop\EyesConnect\EyesConnect\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\f\OpenSans-Semibold.ttf">
       <PackagePath>OpenSans-Semibold.ttf</PackagePath>
-      <Modified>2025-02-05T14:25:09.347</Modified>
+      <Modified>2025-02-06T21:36:13.870</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\matti\Desktop\EyesConnect\EyesConnect\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appicon.ico">
       <PackagePath>appicon.ico</PackagePath>
-      <Modified>2025-02-05T14:26:16.236</Modified>
+      <Modified>2025-02-06T21:43:27.319</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\matti\Desktop\EyesConnect\EyesConnect\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLargeTile.scale-100.png">
       <PackagePath>appiconLargeTile.scale-100.png</PackagePath>
-      <Modified>2025-02-05T14:26:16.236</Modified>
+      <Modified>2025-02-06T21:43:27.310</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\matti\Desktop\EyesConnect\EyesConnect\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLargeTile.scale-125.png">
       <PackagePath>appiconLargeTile.scale-125.png</PackagePath>
-      <Modified>2025-02-05T14:26:16.236</Modified>
+      <Modified>2025-02-06T21:43:27.310</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\matti\Desktop\EyesConnect\EyesConnect\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLargeTile.scale-150.png">
       <PackagePath>appiconLargeTile.scale-150.png</PackagePath>
-      <Modified>2025-02-05T14:26:16.236</Modified>
+      <Modified>2025-02-06T21:43:27.310</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\matti\Desktop\EyesConnect\EyesConnect\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLargeTile.scale-200.png">
       <PackagePath>appiconLargeTile.scale-200.png</PackagePath>
-      <Modified>2025-02-05T14:26:16.236</Modified>
+      <Modified>2025-02-06T21:43:27.310</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\matti\Desktop\EyesConnect\EyesConnect\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLargeTile.scale-400.png">
       <PackagePath>appiconLargeTile.scale-400.png</PackagePath>
-      <Modified>2025-02-05T14:26:16.234</Modified>
+      <Modified>2025-02-06T21:43:27.310</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\matti\Desktop\EyesConnect\EyesConnect\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-lightunplated_targetsize-16.png">
       <PackagePath>appiconLogo.altform-lightunplated_targetsize-16.png</PackagePath>
-      <Modified>2025-02-05T14:26:16.236</Modified>
+      <Modified>2025-02-06T21:43:27.310</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\matti\Desktop\EyesConnect\EyesConnect\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-lightunplated_targetsize-24.png">
       <PackagePath>appiconLogo.altform-lightunplated_targetsize-24.png</PackagePath>
-      <Modified>2025-02-05T14:26:16.236</Modified>
+      <Modified>2025-02-06T21:43:27.310</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\matti\Desktop\EyesConnect\EyesConnect\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-lightunplated_targetsize-256.png">
       <PackagePath>appiconLogo.altform-lightunplated_targetsize-256.png</PackagePath>
-      <Modified>2025-02-05T14:26:16.236</Modified>
+      <Modified>2025-02-06T21:43:27.310</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\matti\Desktop\EyesConnect\EyesConnect\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-lightunplated_targetsize-32.png">
       <PackagePath>appiconLogo.altform-lightunplated_targetsize-32.png</PackagePath>
-      <Modified>2025-02-05T14:26:16.236</Modified>
+      <Modified>2025-02-06T21:43:27.310</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\matti\Desktop\EyesConnect\EyesConnect\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-lightunplated_targetsize-48.png">
       <PackagePath>appiconLogo.altform-lightunplated_targetsize-48.png</PackagePath>
-      <Modified>2025-02-05T14:26:16.236</Modified>
+      <Modified>2025-02-06T21:43:27.310</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\matti\Desktop\EyesConnect\EyesConnect\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-unplated_targetsize-16.png">
       <PackagePath>appiconLogo.altform-unplated_targetsize-16.png</PackagePath>
-      <Modified>2025-02-05T14:26:16.236</Modified>
+      <Modified>2025-02-06T21:43:27.310</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\matti\Desktop\EyesConnect\EyesConnect\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-unplated_targetsize-24.png">
       <PackagePath>appiconLogo.altform-unplated_targetsize-24.png</PackagePath>
-      <Modified>2025-02-05T14:26:16.236</Modified>
+      <Modified>2025-02-06T21:43:27.310</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\matti\Desktop\EyesConnect\EyesConnect\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-unplated_targetsize-256.png">
       <PackagePath>appiconLogo.altform-unplated_targetsize-256.png</PackagePath>
-      <Modified>2025-02-05T14:26:16.236</Modified>
+      <Modified>2025-02-06T21:43:27.310</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\matti\Desktop\EyesConnect\EyesConnect\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-unplated_targetsize-32.png">
       <PackagePath>appiconLogo.altform-unplated_targetsize-32.png</PackagePath>
-      <Modified>2025-02-05T14:26:16.236</Modified>
+      <Modified>2025-02-06T21:43:27.310</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\matti\Desktop\EyesConnect\EyesConnect\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.altform-unplated_targetsize-48.png">
       <PackagePath>appiconLogo.altform-unplated_targetsize-48.png</PackagePath>
-      <Modified>2025-02-05T14:26:16.236</Modified>
+      <Modified>2025-02-06T21:43:27.310</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\matti\Desktop\EyesConnect\EyesConnect\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.scale-100.png">
       <PackagePath>appiconLogo.scale-100.png</PackagePath>
-      <Modified>2025-02-05T14:26:16.236</Modified>
+      <Modified>2025-02-06T21:43:27.319</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\matti\Desktop\EyesConnect\EyesConnect\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.scale-125.png">
       <PackagePath>appiconLogo.scale-125.png</PackagePath>
-      <Modified>2025-02-05T14:26:16.236</Modified>
+      <Modified>2025-02-06T21:43:27.310</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\matti\Desktop\EyesConnect\EyesConnect\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.scale-150.png">
       <PackagePath>appiconLogo.scale-150.png</PackagePath>
-      <Modified>2025-02-05T14:26:16.236</Modified>
+      <Modified>2025-02-06T21:43:27.310</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\matti\Desktop\EyesConnect\EyesConnect\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.scale-200.png">
       <PackagePath>appiconLogo.scale-200.png</PackagePath>
-      <Modified>2025-02-05T14:26:16.236</Modified>
+      <Modified>2025-02-06T21:43:27.310</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\matti\Desktop\EyesConnect\EyesConnect\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.scale-400.png">
       <PackagePath>appiconLogo.scale-400.png</PackagePath>
-      <Modified>2025-02-05T14:26:16.236</Modified>
+      <Modified>2025-02-06T21:43:27.310</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\matti\Desktop\EyesConnect\EyesConnect\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.targetsize-16.png">
       <PackagePath>appiconLogo.targetsize-16.png</PackagePath>
-      <Modified>2025-02-05T14:26:16.236</Modified>
+      <Modified>2025-02-06T21:43:27.310</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\matti\Desktop\EyesConnect\EyesConnect\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.targetsize-24.png">
       <PackagePath>appiconLogo.targetsize-24.png</PackagePath>
-      <Modified>2025-02-05T14:26:16.236</Modified>
+      <Modified>2025-02-06T21:43:27.310</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\matti\Desktop\EyesConnect\EyesConnect\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.targetsize-256.png">
       <PackagePath>appiconLogo.targetsize-256.png</PackagePath>
-      <Modified>2025-02-05T14:26:16.236</Modified>
+      <Modified>2025-02-06T21:43:27.310</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\matti\Desktop\EyesConnect\EyesConnect\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.targetsize-32.png">
       <PackagePath>appiconLogo.targetsize-32.png</PackagePath>
-      <Modified>2025-02-05T14:26:16.236</Modified>
+      <Modified>2025-02-06T21:43:27.310</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\matti\Desktop\EyesConnect\EyesConnect\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.targetsize-48.png">
       <PackagePath>appiconLogo.targetsize-48.png</PackagePath>
-      <Modified>2025-02-05T14:26:16.236</Modified>
+      <Modified>2025-02-06T21:43:27.310</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\matti\Desktop\EyesConnect\EyesConnect\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconMediumTile.scale-100.png">
       <PackagePath>appiconMediumTile.scale-100.png</PackagePath>
-      <Modified>2025-02-05T14:26:16.236</Modified>
+      <Modified>2025-02-06T21:43:27.310</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\matti\Desktop\EyesConnect\EyesConnect\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconMediumTile.scale-125.png">
       <PackagePath>appiconMediumTile.scale-125.png</PackagePath>
-      <Modified>2025-02-05T14:26:16.236</Modified>
+      <Modified>2025-02-06T21:43:27.310</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\matti\Desktop\EyesConnect\EyesConnect\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconMediumTile.scale-150.png">
       <PackagePath>appiconMediumTile.scale-150.png</PackagePath>
-      <Modified>2025-02-05T14:26:16.236</Modified>
+      <Modified>2025-02-06T21:43:27.310</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\matti\Desktop\EyesConnect\EyesConnect\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconMediumTile.scale-200.png">
       <PackagePath>appiconMediumTile.scale-200.png</PackagePath>
-      <Modified>2025-02-05T14:26:16.236</Modified>
+      <Modified>2025-02-06T21:43:27.310</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\matti\Desktop\EyesConnect\EyesConnect\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconMediumTile.scale-400.png">
       <PackagePath>appiconMediumTile.scale-400.png</PackagePath>
-      <Modified>2025-02-05T14:26:16.236</Modified>
+      <Modified>2025-02-06T21:43:27.310</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\matti\Desktop\EyesConnect\EyesConnect\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconSmallTile.scale-100.png">
       <PackagePath>appiconSmallTile.scale-100.png</PackagePath>
-      <Modified>2025-02-05T14:26:16.236</Modified>
+      <Modified>2025-02-06T21:43:27.310</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\matti\Desktop\EyesConnect\EyesConnect\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconSmallTile.scale-125.png">
       <PackagePath>appiconSmallTile.scale-125.png</PackagePath>
-      <Modified>2025-02-05T14:26:16.236</Modified>
+      <Modified>2025-02-06T21:43:27.310</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\matti\Desktop\EyesConnect\EyesConnect\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconSmallTile.scale-150.png">
       <PackagePath>appiconSmallTile.scale-150.png</PackagePath>
-      <Modified>2025-02-05T14:26:16.236</Modified>
+      <Modified>2025-02-06T21:43:27.310</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\matti\Desktop\EyesConnect\EyesConnect\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconSmallTile.scale-200.png">
       <PackagePath>appiconSmallTile.scale-200.png</PackagePath>
-      <Modified>2025-02-05T14:26:16.236</Modified>
+      <Modified>2025-02-06T21:43:27.310</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\matti\Desktop\EyesConnect\EyesConnect\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconSmallTile.scale-400.png">
       <PackagePath>appiconSmallTile.scale-400.png</PackagePath>
-      <Modified>2025-02-05T14:26:16.236</Modified>
+      <Modified>2025-02-06T21:43:27.310</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\matti\Desktop\EyesConnect\EyesConnect\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconStoreLogo.scale-100.png">
       <PackagePath>appiconStoreLogo.scale-100.png</PackagePath>
-      <Modified>2025-02-05T14:26:16.236</Modified>
+      <Modified>2025-02-06T21:43:27.310</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\matti\Desktop\EyesConnect\EyesConnect\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconStoreLogo.scale-125.png">
       <PackagePath>appiconStoreLogo.scale-125.png</PackagePath>
-      <Modified>2025-02-05T14:26:16.236</Modified>
+      <Modified>2025-02-06T21:43:27.310</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\matti\Desktop\EyesConnect\EyesConnect\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconStoreLogo.scale-150.png">
       <PackagePath>appiconStoreLogo.scale-150.png</PackagePath>
-      <Modified>2025-02-05T14:26:16.236</Modified>
+      <Modified>2025-02-06T21:43:27.310</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\matti\Desktop\EyesConnect\EyesConnect\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconStoreLogo.scale-200.png">
       <PackagePath>appiconStoreLogo.scale-200.png</PackagePath>
-      <Modified>2025-02-05T14:26:16.236</Modified>
+      <Modified>2025-02-06T21:43:27.310</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\matti\Desktop\EyesConnect\EyesConnect\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconStoreLogo.scale-400.png">
       <PackagePath>appiconStoreLogo.scale-400.png</PackagePath>
-      <Modified>2025-02-05T14:26:16.236</Modified>
+      <Modified>2025-02-06T21:43:27.310</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\matti\Desktop\EyesConnect\EyesConnect\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconWideTile.scale-100.png">
       <PackagePath>appiconWideTile.scale-100.png</PackagePath>
-      <Modified>2025-02-05T14:26:16.236</Modified>
+      <Modified>2025-02-06T21:43:27.310</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\matti\Desktop\EyesConnect\EyesConnect\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconWideTile.scale-125.png">
       <PackagePath>appiconWideTile.scale-125.png</PackagePath>
-      <Modified>2025-02-05T14:26:16.236</Modified>
+      <Modified>2025-02-06T21:43:27.310</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\matti\Desktop\EyesConnect\EyesConnect\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconWideTile.scale-150.png">
       <PackagePath>appiconWideTile.scale-150.png</PackagePath>
-      <Modified>2025-02-05T14:26:16.236</Modified>
+      <Modified>2025-02-06T21:43:27.310</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\matti\Desktop\EyesConnect\EyesConnect\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconWideTile.scale-200.png">
       <PackagePath>appiconWideTile.scale-200.png</PackagePath>
-      <Modified>2025-02-05T14:26:16.236</Modified>
+      <Modified>2025-02-06T21:43:27.310</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\matti\Desktop\EyesConnect\EyesConnect\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconWideTile.scale-400.png">
       <PackagePath>appiconWideTile.scale-400.png</PackagePath>
-      <Modified>2025-02-05T14:26:16.236</Modified>
+      <Modified>2025-02-06T21:43:27.310</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\matti\Desktop\EyesConnect\EyesConnect\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\dotnet_bot.scale-100.png">
       <PackagePath>dotnet_bot.scale-100.png</PackagePath>
-      <Modified>2025-02-05T14:26:16.236</Modified>
+      <Modified>2025-02-06T21:43:27.309</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\matti\Desktop\EyesConnect\EyesConnect\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\dotnet_bot.scale-125.png">
       <PackagePath>dotnet_bot.scale-125.png</PackagePath>
-      <Modified>2025-02-05T14:26:16.236</Modified>
+      <Modified>2025-02-06T21:43:27.309</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\matti\Desktop\EyesConnect\EyesConnect\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\dotnet_bot.scale-150.png">
       <PackagePath>dotnet_bot.scale-150.png</PackagePath>
-      <Modified>2025-02-05T14:26:16.236</Modified>
+      <Modified>2025-02-06T21:43:27.309</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\matti\Desktop\EyesConnect\EyesConnect\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\dotnet_bot.scale-200.png">
       <PackagePath>dotnet_bot.scale-200.png</PackagePath>
-      <Modified>2025-02-05T14:26:16.236</Modified>
+      <Modified>2025-02-06T21:43:27.309</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\matti\Desktop\EyesConnect\EyesConnect\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\dotnet_bot.scale-400.png">
       <PackagePath>dotnet_bot.scale-400.png</PackagePath>
-      <Modified>2025-02-05T14:26:16.236</Modified>
+      <Modified>2025-02-06T21:43:27.309</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\matti\Desktop\EyesConnect\EyesConnect\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\EyesConnect.deps.json">
       <PackagePath>EyesConnect.deps.json</PackagePath>
-      <Modified>2025-02-05T16:36:02.661</Modified>
+      <Modified>2025-02-06T21:44:54.649</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\matti\.nuget\packages\microsoft.windows.sdk.net.ref\10.0.19041.57\lib\net8.0\Microsoft.Windows.SDK.NET.dll">
       <PackagePath>Microsoft.Windows.SDK.NET.dll</PackagePath>

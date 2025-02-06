@@ -11,17 +11,17 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyMetadataAttribute("Microsoft.Maui.ApplicationModel.AppInfo.PackageName", "com.companyname.eyesconnect")]
+[assembly: System.Reflection.AssemblyMetadataAttribute("Microsoft.Maui.ApplicationModel.AppInfo.PackageName", "com.nvision.eyesconnect")]
 [assembly: System.Reflection.AssemblyMetadataAttribute("Microsoft.Maui.ApplicationModel.AppInfo.PublisherName", "User Name")]
 [assembly: System.Reflection.AssemblyMetadataAttribute("Microsoft.Maui.ApplicationModel.AppInfo.Name", "EyesConnect")]
-[assembly: System.Reflection.AssemblyMetadataAttribute("Microsoft.Maui.ApplicationModel.AppInfo.Version", "1.0.0.1")]
+[assembly: System.Reflection.AssemblyMetadataAttribute("Microsoft.Maui.ApplicationModel.AppInfo.Version", "0.0.2.2")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("EyesConnect")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
-[assembly: System.Reflection.AssemblyFileVersionAttribute("0.0.2.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("0.0.2+211a24beff7e4c61bdd207ca267849491bb49795")]
+[assembly: System.Reflection.AssemblyFileVersionAttribute("0.0.3.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("0.0.3+7ade827b2295a08b45b8632df602918157ad5f4e")]
 [assembly: System.Reflection.AssemblyProductAttribute("EyesConnect")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EyesConnect")]
-[assembly: System.Reflection.AssemblyVersionAttribute("0.0.2.0")]
+[assembly: System.Reflection.AssemblyVersionAttribute("0.0.3.0")]
 [assembly: System.Runtime.Versioning.TargetPlatformAttribute("Windows10.0.19041.0")]
 [assembly: System.Runtime.Versioning.SupportedOSPlatformAttribute("Windows10.0.17763.0")]
 

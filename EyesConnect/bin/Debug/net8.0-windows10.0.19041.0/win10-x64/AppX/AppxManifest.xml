@@ -7,7 +7,7 @@
 
     Per ulteriori informazioni sui file manifesto di pacchetto, vedere http://go.microsoft.com/fwlink/?LinkID=241727
   -->
-  <Identity Name="com.companyname.eyesconnect" Publisher="CN=User Name" Version="1.0.0.1" ProcessorArchitecture="x64" />
+  <Identity Name="com.nvision.eyesconnect" Publisher="CN=User Name" Version="0.0.2.2" ProcessorArchitecture="x64" />
   <mp:PhoneIdentity PhoneProductId="CC2C551A-A84A-49F9-81E9-0310D2F0FDC2" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>EyesConnect</DisplayName>
